@@ -72,7 +72,7 @@ public class student extends userbook_manage{
 				}
 			}
 			if(borrowed.getname() == ""){
-				response += "\n目前可借閱";
+				response += "\n目前可借閱" ;
 				check = 1;
 				int select = Integer.parseInt(JOptionPane.showInputDialog(response + " \n(1)借閱 \n(2)不借閱"));
 				switch (select){
