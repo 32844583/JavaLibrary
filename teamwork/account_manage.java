@@ -23,7 +23,7 @@ public class account_manage{
 		}
 		
 	}
-	public String login(){
+	public user login(){
       		JTextField xField = new JTextField(5);
       		JTextField yField = new JTextField(5);
       		JPanel myPanel = new JPanel();
@@ -41,24 +41,20 @@ public class account_manage{
 		while(result == JOptionPane.OK_OPTION && (check == 0 && count < 3)){
 			for(user u:users){
 				if (u.getaccount().equals(xField.getText()) && u.getpassword().equals(yField.getText())){
-					ex = u;
+					JOptionPane.showMessageDialog(null,"登入成功!");
+					check = 1;
+					return u;
 				}
 						
                     		}
-			if (ex.getname() != ""){
-				JOptionPane.showMessageDialog(null,"登入成功!");
-				result = JOptionPane.CANCEL_OPTION;
-				check = 1;
-				return ex.getname();
-			}
-			else{
+			if (check == 0){
 				JOptionPane.showMessageDialog(null,"登入失敗, 請確認帳號密碼是否正確");
 				count +=1;
 				result = JOptionPane.showConfirmDialog(null, myPanel,"login", JOptionPane.OK_CANCEL_OPTION);
 			}
      		}
 		if(result == JOptionPane.CANCEL_OPTION){JOptionPane.showMessageDialog(null,"取消登入");}
-		return "error";  // 帳號密碼錯誤或取消登入
+		return ex;  // 帳號密碼錯誤或取消登入
 	}
 	public void show(){
 		String respon="" ;
