@@ -6,39 +6,36 @@ public class lib extends account_manage{
 		menu();
 	}
 	public static void menu(){
-		String login[] = {"琩高ノ","爹","祅"};
-    	int select = JOptionPane.showOptionDialog(null,"舧ㄓい╰参!", "lib",JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,1);
+		String login[] = {"爹","祅","琩高ノ"};
+    	int select = JOptionPane.showOptionDialog(null,"舧ㄓい╰参!", "lib",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,1);
        	account_manage ac = new account_manage();
-		switch (select){
-         			
-			case 1:ac.add();break;
+		while(select ==0 || select ==1 || select ==2){
+			if (select == 0){
+				ac.add();
+			}
 
-			case 2:
-				String na = ac.login();
-				user temp_u = new user("empty","empty","empty","empty");
-				for(user i : users){
-					if(i.getname().equals(na)){
-						temp_u = i;
-					}
-				}
-				String identitor = temp_u.getidentification();
-				if (identitor  == "Teacher"){
+			if(select == 1){
+				user u = ac.login();
+				userbook_manage ubm = new userbook_manage();
+				if (u.getidentification()  == "Teacher"){
 					
 				}
-				else if (identitor.equals("Student")){
-					student temp_stu = new student(temp_u.getname(), temp_u.getaccount(), temp_u.getpassword(), temp_u.getidentification());
-					temp_stu.action(temp_u);
+				else if (u.getidentification().equals("Student")){
+					student stu = new student(u.getname(), u.getaccount(), u.getpassword(), u.getidentification());
+					stu.action();
+					ubm.addstu(stu);
 				}
-				else if (identitor  == "Staff"){
+				else if (u.getidentification()  == "Staff"){
 				}
-				else if (identitor.equals("Admin")){
-					adminstrator temp_bkm = new adminstrator(temp_u.getname(), temp_u.getaccount(), temp_u.getpassword(), temp_u.getidentification());
-					temp_bkm.action(temp_u);
+				else if (u.getidentification().equals("Admin")){
+					adminstrator temp_bkm = new adminstrator(u.getname(), u.getaccount(), u.getpassword(), u.getidentification());
+					temp_bkm.action(u);
 				}
 				else{System.out.println("No Existing");}
-				break;
-			case 3:ac.show();break;
-       			}
-	if (select !=4){menu();}}
+			}
+			if (select == 2){ac.show();}
+			menu();
+		}
+       	}
 	
 }
