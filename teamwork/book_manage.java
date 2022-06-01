@@ -21,6 +21,13 @@ public class book_manage{
 		search se = new search();
 		return se.search_gui();
 	}
+	public void user_retrieve(String bkname){
+		for (book b:books){
+			if(b.getname() == bkname){
+				b.setsituation("available");
+			}
+		}
+	}
 	public void show(){
 		String respon="" ;
 		for (book b:books){
