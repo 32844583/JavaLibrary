@@ -31,20 +31,29 @@ public class student{
 		
 	}
 	public void watchinfo(){
+		JFrame jf = new JFrame();
+		jf.setSize(500,500);
+		jf.setLocationRelativeTo(null);
 		JPanel myPanel = new JPanel();
 		GridLayout experimentLayout = new GridLayout(0,2);
 		myPanel.setLayout(experimentLayout);
 		for (userbook ub:userbooks){
 				myPanel.add(new JLabel("書名:" + ub.getname()));
 				myPanel.add(Box.createHorizontalStrut(15));
+
 		}
 		myPanel.add(new JLabel("目前借閱數量:" + userbooks.size()));
-		myPanel.add(new JLabel("請輸入歸還書名"));
-		JTextField xField = new JTextField(5);
-		myPanel.add(xField);
-		int result = JOptionPane.showConfirmDialog(null, myPanel,"retrieve", JOptionPane.OK_CANCEL_OPTION);
+      final JComboBox<String> comboBox = new JComboBox<String>();
+	  JLabel label = new JLabel("請選擇歸還的書籍:");
+		myPanel.add(label);
+		for(userbook ub : userbooks){
+			comboBox.addItem(ub.getname());
+		}
+        comboBox.setSelectedIndex(0);
+        myPanel.add(comboBox);
+		int result = JOptionPane.showConfirmDialog(null, myPanel,"retrieve",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
      		if (result == JOptionPane.OK_OPTION) {
-			retrieve(xField.getText());
+			retrieve(comboBox.getSelectedItem().toString());
       		}
 	}
 	public void retrieve(String bkname){
