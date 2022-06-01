@@ -1,42 +1,44 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-public class student extends userbook_manage{
+public class student{
+	static ArrayList<userbook> userbooks = new ArrayList<userbook>();
+	private String name;
+	private String account;
+	private String password;
+	private String identification;
 	private int lendup;
-	static ArrayList<curbook> temp_curbooks  = new ArrayList<curbook>();
 	public student(String n, String acc, String pass, String ident){
-		this.lendup = 10;
+		this.name = n;
+		this.account = acc;
+		this.password = pass;
+		this.identification = ident;
 	}
-	public void action(user u){
+	public void action(){
 		String login[] = {"登出","查詢個人資料","搜尋書籍"};
-		int select = JOptionPane.showOptionDialog(null,"學生" + u.getname()+""+"您好:","student", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,null);
+		int select = JOptionPane.showOptionDialog(null,"學生" + this.name+"您好:","student", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,null);
 		if (select !=0){
 			switch (select){
          			case 1:
-            				watchinfo(u);
+            				watchinfo();
             				break;
          			case 2:
-            				addcur(u);
+            				borrow_book();
             				break;
        			}
-			action(u);
+			action();
 		}
 		
 	}
-	public void watchinfo(user u){
-		String display = "";
-		userbook_manage ubm = new userbook_manage();
+	public void watchinfo(){
 		JPanel myPanel = new JPanel();
 		GridLayout experimentLayout = new GridLayout(0,2);
 		myPanel.setLayout(experimentLayout);
-		for (curbook cb:curbooks){
-			if(cb.getborrower().equals(u.getname())){
-				temp_curbooks.add(cb);
-				myPanel.add(new JLabel("書名:" + cb.getname()));
+		for (userbook ub:userbooks){
+				myPanel.add(new JLabel("書名:" + ub.getname()));
 				myPanel.add(Box.createHorizontalStrut(15));
-			}
 		}
-		myPanel.add(new JLabel("目前借閱數量:" + ubm.count(u)));
+		myPanel.add(new JLabel("目前借閱數量:" + userbooks.size()));
 		myPanel.add(new JLabel("請輸入歸還書名"));
 		JTextField xField = new JTextField(5);
 		myPanel.add(xField);
@@ -46,49 +48,57 @@ public class student extends userbook_manage{
       		}
 	}
 	public void retrieve(String bkname){
-		curbook temp = new curbook("","","","");
-		for (curbook cb:curbooks){
-			if(cb.getname().equals(bkname)){
-				temp = cb;
+		userbook retrieve_book= new userbook("","","","");
+		int check = 0;
+		for (userbook ub: userbooks){
+			if (ub.getname().equals(bkname)){
+				retrieve_book = ub;
 			}
 		}
-		remove(temp);
-		
-		JOptionPane.showMessageDialog(null, "歸還成功!!");
-		
+		if (retrieve_book.getname() != ""){
+			book_manage bkm = new book_manage();
+			bkm.user_retrieve(retrieve_book.getname());
+			userbooks.remove(retrieve_book);
+			JOptionPane.showMessageDialog(null, "歸還成功!!");
+			watchinfo();
+		}
+		else{JOptionPane.showMessageDialog(null, "您無借閱此書籍!");}
 	}
-     	public void addcur(user u){
-		int check = 0;
+     	public void borrow_book(){
+		userbook_manage ubm = new userbook_manage();
 		book_manage bm = new book_manage();
 		book adbook = bm.usersea();
 		if(adbook.getname() == "no this book"){JOptionPane.showMessageDialog(null, "查無此書籍");}
 		else{
 			String response = "";
-			curbook borrowed = new curbook("","","","");
-			for(curbook cb:curbooks){
-				if (adbook.getname().equals(cb.getname())){
-					response += "書名:" + adbook.getname() + "\n出版社:" + adbook.getpublish() + "\n作者:" + adbook.getpublish();
-						borrowed = cb;
-				
-				}
+			response += "書名:" + adbook.getname() + "\n出版社:" + adbook.getpublish() + "\n作者:" + adbook.getauthor();
+
+			if(adbook.getsituation() == "unavailable"){
+				String r_date = ubm.retrieve_date(adbook.getname());
+				response += "\n此書已被借閱至" + r_date;
+				JOptionPane.showMessageDialog(null, response);
 			}
-			if(borrowed.getname() == ""){
+			else{
 				response += "\n目前可借閱" ;
-				String borrow[] = {"不借閱","借閱"};
-				check = 1;
-				int select = JOptionPane.showOptionDialog(null,"目前可借閱",null+"student", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,borrow,null);
+				String borrow[] = {"借閱", "不借閱"};
+				int select = JOptionPane.showOptionDialog(null,"目前可借閱",null+"student", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,borrow,null);
 				switch (select){
-         					case 1:
-					add(adbook, u);
+         					case 0:
+					userbook ub = new userbook(adbook.getname(), adbook.getpublish(), adbook.getauthor(), this.name);
+					userbooks.add(ub);
 					adbook.setsituation("unavailable");
 					break;
 				}
 			}
-			else{
-				response += "\n此書已被" + borrowed.getborrower() + "借走請於" + borrowed.getretrievedate() + "後再次查看";
-				JOptionPane.showMessageDialog(null, response);
-			}
 			
 		}
    	}
+	public String support_retrieve_date(String bkname){
+		for(userbook ub: userbooks){
+			if(ub.getname() == bkname){
+				return ub.getretrievedate();
+			}
+		}
+		return "0";
+	}
 }
