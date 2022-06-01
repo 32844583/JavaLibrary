@@ -6,7 +6,7 @@ public class book{
 	public book(String n, String p, String a){
 		this.name = n;
 		this.publish = p;
-		this.author = a;
+		this.author = a;	
 	}
 	public book(String n){
 		this.name = n;
