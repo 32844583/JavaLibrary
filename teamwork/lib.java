@@ -1,5 +1,6 @@
-import javax.swing.JOptionPane; ///
+import javax.swing.JOptionPane; 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 public class lib extends account_manage{
 	public static void main(String [] args){
 		menu();
@@ -19,20 +20,20 @@ public class lib extends account_manage{
 					}
 				}
 				String identitor = temp_u.getidentification();
-				if (identitor  == "teacher"){
+				if (identitor  == "Teacher"){
 					
 				}
-				else if (identitor.equals("student")){
+				else if (identitor.equals("Student")){
 					student temp_stu = new student(temp_u.getname(), temp_u.getaccount(), temp_u.getpassword(), temp_u.getidentification());
 					temp_stu.action(temp_u);
 				}
-				else if (identitor  == "staff"){
+				else if (identitor  == "Staff"){
 				}
-				else if (identitor.equals("admin")){
+				else if (identitor.equals("Admin")){
 					adminstrator temp_bkm = new adminstrator(temp_u.getname(), temp_u.getaccount(), temp_u.getpassword(), temp_u.getidentification());
 					temp_bkm.action(temp_u);
 				}
-				else{System.out.println("no existing");}
+				else{System.out.println("No Existing");}
 				break;
 			case 3:ac.show();break;
        			}
