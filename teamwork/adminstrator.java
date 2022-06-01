@@ -6,48 +6,45 @@ public class adminstrator extends user{
 	}
 	public void action(user u){
 		book_manage b = new book_manage();
-		int select = Integer.parseInt(JOptionPane.showInputDialog("管理員"+u.getname()+"你好, 請問您要? +  \n(1)編輯或刪除書籍 \n(2)新增書籍\n(3)查看所有書籍\n(4)登出"));
-		if (Integer.toString(select) == null){
-			lib l = new lib();
-			l.menu();
-		}
-		else{
-		if (select !=4){
+		String login[] = {"登出","查看所有書籍","編輯或刪除書籍","新增書籍"};
+		int select = JOptionPane.showOptionDialog(null,"管理員"+u.getname()+"你好, 請問您要?",null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,null);
+		if (select !=0){
 			switch (select){
-         				case 1:
-            				edit(u);
-            				break;
-         				case 2:
-            				b.add();
-            				break;
+         		case 1:
+				 b.show();
+            	break;
+         		case 2:
+				 edit(u);
+            	break;
 				case 3:
-				b.show();
+				b.add();
        			}
 			action(u);
 			}
 		}
-	}
+	
 	public void edit(user u){
 		book_manage b = new book_manage();
 		book adbook = searchbook();
-		int select = Integer.parseInt(JOptionPane.showInputDialog("Welcome to Java Bank! Select transactions: \n(1)編輯 \n(2)刪除 \n (3)驗證\n"));
+		String login[] = {"編輯","刪除","驗證"};
+		int select = JOptionPane.showOptionDialog(null,"Welcome to Java Bank! Select transactions:","bookmanage", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,null);
 		
-		if (select !=4){
+		if (select !=3){
 			switch (select){
-         			case 1:
+         			case 0:
             			revise(adbook);
 			if (adbook.getname() == "no this book"){
 				JOptionPane.showMessageDialog(null, "there is not this book");
 			}
             			break;
-         			case 2:
+         			case 1:
 			if (adbook.getname() == "no this book"){
 				JOptionPane.showMessageDialog(null, "there is not this book");
 			}
             			b.remove(adbook);
 			JOptionPane.showMessageDialog(null, "刪除成功!");
             			break;
-			case 3:
+			case 2:
 			b.show();
 			break;
        			}

@@ -30,8 +30,6 @@ public class regis{
       final JComboBox<String> comboBox = new JComboBox<String>(listData);
       comboBox.setSelectedIndex(0);
       myPanel.add(comboBox);
-
-
       int result = JOptionPane.showConfirmDialog(null, myPanel,"registration", JOptionPane.OK_CANCEL_OPTION);
       if (result == JOptionPane.OK_OPTION) {
    JOptionPane.showMessageDialog(null,"µù¥U¦¨¥\¡I\nÅwªï: "+comboBox.getSelectedItem()+" "+uField.getText());

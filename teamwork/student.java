@@ -8,8 +8,9 @@ public class student extends userbook_manage{
 		this.lendup = 10;
 	}
 	public void action(user u){
-		int select = Integer.parseInt(JOptionPane.showInputDialog(null, "學生" + u.getname()+"您好: \n(1)查詢個人資料 \n(2)搜尋 \n(3)登出\n"));
-		if (select !=3){
+		String login[] = {"登出","查詢個人資料","搜尋書籍"};
+		int select = JOptionPane.showOptionDialog(null,"學生" + u.getname()+""+"您好:","student", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,null);
+		if (select !=0){
 			switch (select){
          			case 1:
             				watchinfo(u);
@@ -73,8 +74,9 @@ public class student extends userbook_manage{
 			}
 			if(borrowed.getname() == ""){
 				response += "\n目前可借閱" ;
+				String borrow[] = {"不借閱","借閱"};
 				check = 1;
-				int select = Integer.parseInt(JOptionPane.showInputDialog(response + " \n(1)借閱 \n(2)不借閱"));
+				int select = JOptionPane.showOptionDialog(null,"目前可借閱",null+"student", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,borrow,null);
 				switch (select){
          					case 1:
 					add(adbook, u);

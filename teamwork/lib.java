@@ -6,11 +6,13 @@ public class lib extends account_manage{
 		menu();
 	}
 	public static void menu(){
-
-       	int select = Integer.parseInt(JOptionPane.showInputDialog("歡迎來到中大借書系統! \n(1)註冊 \n(2)登入 \n(3)查詢目前所有帳號(驗證用)"));
+		String login[] = {"查詢用","註冊","登入"};
+    	int select = JOptionPane.showOptionDialog(null,"歡迎來到中大借書系統!", "lib",JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,1);
        	account_manage ac = new account_manage();
 		switch (select){
-         			case 1:ac.add();break;
+         			
+			case 1:ac.add();break;
+
 			case 2:
 				String na = ac.login();
 				user temp_u = new user("empty","empty","empty","empty");
