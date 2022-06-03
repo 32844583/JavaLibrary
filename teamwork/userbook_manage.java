@@ -6,8 +6,8 @@ public class userbook_manage{
 	
 	public String retrieve_date(String bkname){
 		for(student s : students){
-			if (s.support_retrieve_date(bkname)!="0"){
-				return s.support_retrieve_date(bkname);
+			if(s.really(bkname) != ""){
+				return s.really(bkname);
 			}
 		}
 		return "0";
