@@ -3,6 +3,10 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 public class lib extends account_manage{
 	public static void main(String [] args){
+		account_manage ac = new account_manage();
+		ac.initialize_user();
+		book_manage bm = new book_manage();
+		bm.initialize_book();
 		menu();
 	}
 	public static void menu(){
@@ -22,8 +26,9 @@ public class lib extends account_manage{
 				}
 				else if (u.getidentification().equals("Student")){
 					student stu = new student(u.getname(), u.getaccount(), u.getpassword(), u.getidentification());
-					stu.action();
 					ubm.addstu(stu);
+					stu.action();
+					
 				}
 				else if (u.getidentification()  == "Staff"){
 				}
