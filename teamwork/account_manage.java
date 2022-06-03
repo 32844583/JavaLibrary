@@ -62,5 +62,11 @@ public class account_manage{
 		respon += "姓名:" + u.getname() +"\n"+ "帳號:" + u.getaccount() +"\n"+ "密碼:" +u.getpassword() +"\n"+ "權限:" + u.getidentification() + "\n";}
 		JOptionPane.showMessageDialog(null,"\n目前帳號數量" + users.size()+"\n"+ respon );
 	}
+	public void initialize_user(){
+		users.add(new user("王曉明", "user1", "user1", "Student"));
+		users.add(new user("王大明", "user3", "user3", "Student"));
+		users.add(new user("李小明", "user2", "user2", "Admin"));
+	}
+	
 	
 }
