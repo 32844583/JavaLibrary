@@ -1,20 +1,19 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-public class visitor {
+public class visitor extends book_manage {
     static ArrayList <book> search_books = new ArrayList <book>();
     static ArrayList<userbook> userbooks = new ArrayList<userbook>();
     public void action(){
 		String login[] = {"搜尋書籍","排行榜","登出"};
 		int select = JOptionPane.showOptionDialog(null,"訪客您好：",null, JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,null);
-		if (select !=3){
+		if (select !=2){
 			switch (select){
          			case 0:
                      borrow_book();
             			break;
          			case 1:
-                     
-            			break;
+            			break;	
        			}
 			action();
 		}
@@ -39,25 +38,26 @@ public class visitor {
 		 myPanel.add(Box.createHorizontalStrut(15));
 		 }
 		 final JComboBox<String> comboBox = new JComboBox<String>();
-		JLabel label = new JLabel("目前搜尋到的書籍：");
-		myPanel.add(label);
+		 myPanel.add(new JLabel("關鍵字搜尋:"));
 		
 		for(book b : search_books){
 		 comboBox.addItem(b.getname());
 		}
 		comboBox.setSelectedIndex(0);
 		myPanel.add(comboBox);
-		int result = JOptionPane.showConfirmDialog(null, myPanel,"search",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		int result = JOptionPane.showConfirmDialog(null, myPanel,"search",  JOptionPane.OK_CANCEL_OPTION);
 		adbook = bm.borrow_book_search(comboBox.getSelectedItem().toString());
-		if(result == JOptionPane.OK_OPTION){
-		 JOptionPane.showMessageDialog(null, "請登入再做借閱");
+		for(book b : books){
+			if (b.getname().contains(comboBox.getSelectedItem().toString()));
+		}
+			JOptionPane.showMessageDialog(null, "請登入後做借閱 ");
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "查無此書籍");
 		}
 	}
 }
-}
+
 /*public void watchinfo(){
     search s = new search();
 		JPanel myPanel = new JPanel();

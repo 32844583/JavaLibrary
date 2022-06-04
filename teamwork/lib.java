@@ -45,6 +45,7 @@ public class lib extends account_manage{
 			if (select == 2){ac.show();}
 			menu();
 		}
+	
        	}
 	
 }
