@@ -42,13 +42,49 @@ public class book_manage{
 	JPanel myPanel = new JPanel();
 	GridLayout experimentLayout = new GridLayout(0,3);
 	myPanel.setLayout(experimentLayout);
-	myPanel.add(new JLabel("ÃöÁä¦r·j´M:"));
+	myPanel.add(new JLabel("ï¿½ï¿½ï¿½ï¿½rï¿½jï¿½M:"));
 	myPanel.add(xField);
 
 	int result = JOptionPane.showConfirmDialog(null, myPanel,"Search", JOptionPane.OK_CANCEL_OPTION);
 	System.out.println(result);
 	if(result == 2) {
-		JOptionPane.showMessageDialog(null, "¨ú®ø·j´M");
+		JOptionPane.showMessageDialog(null, "ï¿½ï¿½ï¿½ï¿½ï¿½jï¿½M");
+	}
+	else {
+		for(book b : books){
+			if (b.getname().contains(xField.getText())){ allbook.add(b);}
+			else if(b.getpublish().contains(xField.getText())){ allbook.add(b);}
+			else if(b.getauthor().contains(xField.getText())){ allbook.add(b);}
+		}
+	}
+	return allbook;
+	}
+	public void initialize_book(){
+		books.add(new book("book1", "book1", "book1"));
+		books.add(new book("book2", "book2", "book2"));
+	}
+	public book borrow_book_search(String bkname){
+		book bk = new book("");
+		for(book b : books){
+			if(b.getname() == bkname){
+				bk = b;
+			}
+		}
+		
+		return bk;
+	}
+	public ArrayList new_search_gui() {
+	JTextField xField = new JTextField(5);
+	JPanel myPanel = new JPanel();
+	GridLayout experimentLayout = new GridLayout(0,3);
+	myPanel.setLayout(experimentLayout);
+	myPanel.add(new JLabel("é—œéµå­—æœå°‹:"));
+	myPanel.add(xField);
+
+	int result = JOptionPane.showConfirmDialog(null, myPanel,"Search", JOptionPane.OK_CANCEL_OPTION);
+	System.out.println(result);
+	if(result == 2) {
+		JOptionPane.showMessageDialog(null, "å–æ¶ˆæœå°‹");
 	}
 	else {
 		for(book b : books){
