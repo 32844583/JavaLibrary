@@ -118,12 +118,6 @@ public class account_manage{
 		users.add(new user("王大明", "user3", "user3", "Student"));
 		users.add(new user("李小明", "user2", "user2", "Admin"));
 	}
-	public void initialize_user(){
-		users.add(new user("王曉明", "user1", "user1", "Student"));
-		users.add(new user("王大明", "user3", "user3", "Student"));
-		users.add(new user("李小明", "user2", "user2", "Admin"));
-	}
-	
 	
 	
 }
