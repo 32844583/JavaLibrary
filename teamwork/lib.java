@@ -9,11 +9,11 @@ public class lib extends account_manage{
 		menu();
 	}
 	public static void menu(){
-		String login[] = {"Х╗╩Е├┼","Г≥╩Е┘╔","Ф÷╔Х╘╒Г■╗","Х╗╙Е╝╒"};
+		String login[] = {"╣Ы╔U","╣n╓J","╛d╦ъ╔н","ЁX╚х"};
     	int select;
        	account_manage ac = new account_manage();
 		do{
-			select = JOptionPane.showOptionDialog(null,"Ф╜║Х©▌Д╬├Е┬╟Д╦╜Е╓╖Е─÷Ф⌡╦ГЁ╩Г╣╠!", "Д╦╜Е╓╖Е─÷И√╠ГЁ╩Г╣╠", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,1);
+			select = JOptionPane.showOptionDialog(null,"еw╙О╗с╗Л╓╓╓j╜и╝я╗t╡н!", "╓╓╓j╜и╬\╗t╡н", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,1);
 			if (select == 0){
 				ac.add();
 			}
@@ -43,7 +43,7 @@ public class lib extends account_manage{
 				v.action();
 			}
 		}while(select ==0 || select ==1 || select ==2 || select ==3);
-		JOptionPane.showMessageDialog(null,"Х╛²Х╛²Е┘┴Х┤╗");
+		JOptionPane.showMessageDialog(null,"абаб╔За{");
    	}
 	
 }
