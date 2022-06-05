@@ -1,6 +1,5 @@
-import javax.swing.JOptionPane; 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
 public class lib extends account_manage{
 	public static void main(String [] args){
 		account_manage ac = new account_manage();
@@ -10,10 +9,11 @@ public class lib extends account_manage{
 		menu();
 	}
 	public static void menu(){
-		String login[] = {"爹","祅","琩高ノ"};
-    	int select = JOptionPane.showOptionDialog(null,"舧ㄓい╰参!", "lib",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,1);
+		String login[] = {"爹","祅","琩高ノ","砐"};
+    	int select;
        	account_manage ac = new account_manage();
-		while(select ==0 || select ==1 || select ==2){
+		do{
+			select = JOptionPane.showOptionDialog(null,"舧ㄓい╰参!", "い綷╰参", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,1);
 			if (select == 0){
 				ac.add();
 			}
@@ -38,9 +38,12 @@ public class lib extends account_manage{
 				}
 				else{System.out.println("No Existing");}
 			}
-			if (select == 2){ac.show();}
-			menu();
-		}
-       	}
+			else if(select == 3){
+				visitor v = new visitor();
+				v.action();
+			}
+		}while(select ==0 || select ==1 || select ==2 || select ==3);
+		JOptionPane.showMessageDialog(null,"谅谅羬");
+   	}
 	
 }
