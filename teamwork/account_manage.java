@@ -16,7 +16,7 @@ public class account_manage{
 			}
 			if(check == 0){users.add(new user(info_part [3], info_part [0], info_part [1], info_part[2]));}
 			else{
-				JOptionPane.showMessageDialog(null,"¸Ó±b¸¹¤w¦s¦b");
+				JOptionPane.showMessageDialog(null,"è©²å¸³è™Ÿå·²å­˜åœ¨");
 				add();
 			}
 		}
@@ -28,48 +28,48 @@ public class account_manage{
       		JPanel myPanel = new JPanel();
       		GridLayout experimentLayout = new GridLayout(0,3);
       		myPanel.setLayout(experimentLayout);
-      		myPanel.add(new JLabel("±b¸¹:"));
+      		myPanel.add(new JLabel("å¸³è™Ÿ:"));
       		myPanel.add(xField);
       		myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-      		myPanel.add(new JLabel("±K½X:"));
+      		myPanel.add(new JLabel("å¯†ç¢¼:"));
       		myPanel.add(yField);
-      		String login_button[] = {"µn¤J", "¨ú®ø"};
-      		int result = JOptionPane.showOptionDialog(null, myPanel,"µn¤J¤¶­±", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, login_button,null);
+      		String login_button[] = {"ç™»å…¥", "å–æ¶ˆ"};
+      		int result = JOptionPane.showOptionDialog(null, myPanel,"ç™»å…¥ä»‹é¢", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, login_button,null);
 		int check = 0;
 		int count = 0;
 		user ex = new user("", "", "", "");
 		while(result == 0 && (check == 0 && count < 3)){
 			for(user u:users){
 				if (u.getaccount().equals(xField.getText()) && u.getpassword().equals(yField.getText())){
-					JOptionPane.showMessageDialog(null,"µn¤J¦¨¥\!");
+					JOptionPane.showMessageDialog(null,"ç™»å…¥æˆåŠŸ!");
 					check = 1;
 					return u;
 				}
 						
                     		}
 			if (check == 0){
-				JOptionPane.showMessageDialog(null,"µn¤J¥¢±Ñ, ½Ğ½T»{±b¸¹±K½X¬O§_¥¿½T");
+				JOptionPane.showMessageDialog(null,"ç™»å…¥å¤±æ•—, è«‹ç¢ºèªå¸³è™Ÿå¯†ç¢¼æ˜¯å¦æ­£ç¢º");
 				count +=1;
 				result = JOptionPane.showConfirmDialog(null, myPanel,"login", JOptionPane.OK_CANCEL_OPTION);
 			}
      		}
-		if(result == JOptionPane.CANCEL_OPTION){JOptionPane.showMessageDialog(null,"¨ú®øµn¤J");}
-		return ex;  // ±b¸¹±K½X¿ù»~©Î¨ú®øµn¤J
+		if(result == JOptionPane.CANCEL_OPTION){JOptionPane.showMessageDialog(null,"å–æ¶ˆç™»å…¥");}
+		return ex;  // å¸³è™Ÿå¯†ç¢¼éŒ¯èª¤æˆ–å–æ¶ˆç™»å…¥
 	}
 	public void watch_user(user admin){
 		JFrame jf = new JFrame();
 		jf.setSize(500,500);
 		jf.setLocationRelativeTo(null);
 		JPanel myPanel = new JPanel();
-		GridLayout experimentLayout = new GridLayout(0,¢°);
+		GridLayout experimentLayout = new GridLayout(0,ï¼‘);
 		myPanel.setLayout(experimentLayout);
-		myPanel.add(new JLabel("¨Ï¥ÎªÌ¡@¡@¡@" + "¨­¤À"));
+		myPanel.add(new JLabel("ä½¿ç”¨è€…ã€€ã€€ã€€" + "èº«åˆ†"));
 		for (user u : users){
-			myPanel.add(new JLabel(u.getname() +"¡@¡@"+ (u.getidentification())));
+			myPanel.add(new JLabel(u.getname() +"ã€€ã€€"+ (u.getidentification())));
 		}
-		myPanel.add(new JLabel("¥Ø«e¨Ï¥ÎªÌ¼Æ¶q:¡@" + users.size()));
+		myPanel.add(new JLabel("ç›®å‰ä½¿ç”¨è€…æ•¸é‡:ã€€" + users.size()));
 		final JComboBox<String> comboBox = new JComboBox<String>();
-		myPanel.add(new JLabel("½Ğ¿ï¾Ü­n§R°£©Î§ó§ïÅv­­ªºªº¨Ï¥ÎªÌ"));
+		myPanel.add(new JLabel("è«‹é¸æ“‡è¦åˆªé™¤æˆ–æ›´æ”¹æ¬Šé™çš„çš„ä½¿ç”¨è€…"));
 		for(user u : users){
 			if(u.getidentification() != "Admin") {
 				comboBox.addItem(u.getname());
@@ -77,8 +77,8 @@ public class account_manage{
 		}
 		comboBox.setSelectedIndex(0);
         myPanel.add(comboBox);
-        String manage[] = {"§R°£¨Ï¥ÎªÌ", "§ó§ïÅv­­", "¤£°Ê§@"};
-        int result = JOptionPane.showOptionDialog(null, myPanel,"ºŞ²z¨Ï¥ÎªÌ¤¶­±",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,manage,null);
+        String manage[] = {"åˆªé™¤ä½¿ç”¨è€…", "æ›´æ”¹æ¬Šé™", "ä¸å‹•ä½œ"};
+        int result = JOptionPane.showOptionDialog(null, myPanel,"ç®¡ç†ä½¿ç”¨è€…ä»‹é¢",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,manage,null);
         if(result == 0) {
         	remove_user(comboBox.getSelectedItem().toString());
         }
@@ -95,15 +95,15 @@ public class account_manage{
     			JPanel Panel = new JPanel();
     			GridLayout experiment = new GridLayout(0,1);
     			Panel.setLayout(experiment);
-    			Panel.add(new JLabel("½Ğ¿ï¾Ü­n§ó§ïÅv­­"));
+    			Panel.add(new JLabel("è«‹é¸æ“‡è¦æ›´æ”¹æ¬Šé™"));
     			final JComboBox<String> comboBox = new JComboBox<String>();
     			comboBox.addItem("Admin");
     			comboBox.addItem("Student");
     			comboBox.addItem("Teacher");
     			comboBox.addItem("Staff");
     			Panel.add(comboBox);
-    			String manage_ident[] = {"½T©w§ó§ï", "¤£°Ê§@"};
-    			int select = JOptionPane.showOptionDialog(null, Panel,"ºŞ²z¨Ï¥ÎªÌ¤¶­±",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, manage_ident,null);
+    			String manage_ident[] = {"ç¢ºå®šæ›´æ”¹", "ä¸å‹•ä½œ"};
+    			int select = JOptionPane.showOptionDialog(null, Panel,"ç®¡ç†ä½¿ç”¨è€…ä»‹é¢",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, manage_ident,null);
     			if(select == 0) {
     				u.setidentification(comboBox.getSelectedItem().toString());
     			}
@@ -114,9 +114,9 @@ public class account_manage{
 		users.removeIf(user -> user.getname() == delete_name);
 	}
 	public void initialize_user(){
-		users.add(new user("¤ı¾å©ú", "user1", "user1", "Student"));
-		users.add(new user("¤ı¤j©ú", "user3", "user3", "Student"));
-		users.add(new user("§õ¤p©ú", "user2", "user2", "Admin"));
+		users.add(new user("ç‹æ›‰æ˜", "user1", "user1", "Student"));
+		users.add(new user("ç‹å¤§æ˜", "user3", "user3", "Student"));
+		users.add(new user("æå°æ˜", "user2", "user2", "Admin"));
 	}
 	
 	
