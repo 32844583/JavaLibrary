@@ -42,13 +42,13 @@ public class book_manage{
 	JPanel myPanel = new JPanel();
 	GridLayout experimentLayout = new GridLayout(0,3);
 	myPanel.setLayout(experimentLayout);
-	myPanel.add(new JLabel("ÃöÁä¦r·j´M:"));
+	myPanel.add(new JLabel("é—œéµå­—æœå°‹:"));
 	myPanel.add(xField);
 
 	int result = JOptionPane.showConfirmDialog(null, myPanel,"Search", JOptionPane.OK_CANCEL_OPTION);
 	System.out.println(result);
 	if(result == 2) {
-		JOptionPane.showMessageDialog(null, "¨ú®ø·j´M");
+		JOptionPane.showMessageDialog(null, "å–æ¶ˆæœå°‹");
 	}
 	else {
 		for(book b : books){
