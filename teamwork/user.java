@@ -13,6 +13,7 @@ public class user{
 		book_manage b = new book_manage();
 		return b.sea();
 	}
+	public void setidentification(String ident) {this.identification = ident;}
 	public String getname(){return name;}
 	public String getaccount(){return account;}
 	public String getpassword(){return password;}
