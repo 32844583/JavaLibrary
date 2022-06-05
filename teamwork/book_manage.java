@@ -16,26 +16,12 @@ public class book_manage{
 	public void remove(book b){
 		books.removeIf(book -> book.getname() == b.getname());
 	}
-	public book usersea(){
-		search se = new search();
-		return se.search_gui();
-	}
-	public book sea(){
-		search se = new search();
-		return se.search_gui();
-	}
 	public void user_retrieve(String bkname){
 		for (book b:books){
 			if(b.getname() == bkname){
 				b.setsituation("available");
 			}
 		}
-	}
-	public void show(){
-		String respon="" ;
-		for (book b:books){
-		respon += "書名:" + b.getname() + "\n"+ "出版社" + b.getpublish() + "\n" +"作者:" + b.getauthor() + "\n";}
-		JOptionPane.showMessageDialog(null,"\n目前書籍數量" + books.size() + "\n"+ respon );
 	}
 	public void initialize_book(){
 		books.add(new book("book1", "book1", "book1"));
@@ -60,13 +46,17 @@ public class book_manage{
 	myPanel.add(xField);
 
 	int result = JOptionPane.showConfirmDialog(null, myPanel,"Search", JOptionPane.OK_CANCEL_OPTION);
-	book find = new book("no this book");
-	for(book b : books){
-		if (b.getname().contains(xField.getText())){ allbook.add(b);}
-		else if(b.getpublish().contains(xField.getText())){ allbook.add(b);}
-		else if(b.getauthor().contains(xField.getText())){ allbook.add(b);}
+	System.out.println(result);
+	if(result == 2) {
+		JOptionPane.showMessageDialog(null, "取消搜尋");
 	}
-
+	else {
+		for(book b : books){
+			if (b.getname().contains(xField.getText())){ allbook.add(b);}
+			else if(b.getpublish().contains(xField.getText())){ allbook.add(b);}
+			else if(b.getauthor().contains(xField.getText())){ allbook.add(b);}
+		}
+	}
 	return allbook;
 	}
 }
