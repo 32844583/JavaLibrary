@@ -15,16 +15,16 @@ public class regis{
       JPanel myPanel = new JPanel();
       GridLayout experimentLayout = new GridLayout(0,3);
       myPanel.setLayout(experimentLayout);
-      myPanel.add(new JLabel("©m¦W:")); 
+      myPanel.add(new JLabel("å§“å:")); 
       myPanel.add(uField); 
       myPanel.add(Box.createHorizontalStrut(15));// a spacer
-      myPanel.add(new JLabel("±b¸¹:"));
+      myPanel.add(new JLabel("å¸³è™Ÿ:"));
       myPanel.add(xField);
       myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-      myPanel.add(new JLabel("±K½X:"));
+      myPanel.add(new JLabel("å¯†ç¢¼:"));
       myPanel.add(yField);
       myPanel.add(Box.createHorizontalStrut(15));
-      JLabel label = new JLabel("¨­¥÷§O:");
+      JLabel label = new JLabel("èº«ä»½åˆ¥:");
       myPanel.add(label);
       String[] listData = {"Student", "Teacher", "Staff", "Admin"};
       final JComboBox<String> comboBox = new JComboBox<String>(listData);
@@ -32,11 +32,11 @@ public class regis{
       myPanel.add(comboBox);
       int result = JOptionPane.showConfirmDialog(null, myPanel,"registration", JOptionPane.OK_CANCEL_OPTION);
       if (result == JOptionPane.OK_OPTION) {
-   JOptionPane.showMessageDialog(null,"µù¥U¦¨¥\¡I\nÅwªï: "+comboBox.getSelectedItem()+" "+uField.getText());
+   JOptionPane.showMessageDialog(null,"è¨»å†ŠæˆåŠŸï¼\næ­¡è¿: "+comboBox.getSelectedItem()+" "+uField.getText());
    return xField.getText() +'-'+ yField.getText() + '-' +comboBox.getSelectedItem()+ '-' +uField.getText();
       }
       else{
-	JOptionPane.showMessageDialog(null,"¨ú®øµù¥U");
+	JOptionPane.showMessageDialog(null,"å–æ¶ˆè¨»å†Š");
                     return "Cancel regis";
       }
    }
