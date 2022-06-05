@@ -9,13 +9,13 @@ public class addbook extends userbook_manage{
       JPanel myPanel = new JPanel();
       GridLayout experimentLayout = new GridLayout(0,3);
       myPanel.setLayout(experimentLayout);
-      myPanel.add(new JLabel("®Ñ¦W:"));
+      myPanel.add(new JLabel("æ›¸å:"));
       myPanel.add(xField);
 myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-      myPanel.add(new JLabel("§@ªÌ:"));
+      myPanel.add(new JLabel("ä½œè€…:"));
       myPanel.add(yField);
 myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-      myPanel.add(new JLabel("¥Xª©ªÀ:"));
+      myPanel.add(new JLabel("å‡ºç‰ˆç¤¾:"));
       myPanel.add(zField);
 
       int result = JOptionPane.showConfirmDialog(null, myPanel,"addbook", JOptionPane.OK_CANCEL_OPTION);
