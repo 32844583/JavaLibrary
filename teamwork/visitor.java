@@ -1,62 +1,95 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-public class visitor extends book_manage {
-    static ArrayList <book> search_books = new ArrayList <book>();
-    static ArrayList<userbook> userbooks = new ArrayList<userbook>();
-    public void action(){
-		String login[] = {"ÊêúÂ∞ãÊõ∏Á±ç","ÊéíË°åÊ¶ú","ÂõûÂà∞È¶ñÈ†Å"};
-		int select = JOptionPane.showOptionDialog(null,"Ë®™ÂÆ¢ÊÇ®Â•ΩÔºö",null, JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,null);
-		if (select !=2){
-			switch (select){
-         			case 0:
-                     borrow_book();
-            			break;
-         			case 1:
-            			break;	
-       			}
+
+public class visitor {
+	static ArrayList<book> search_books = new ArrayList<book>();
+
+	public void action() {
+		String login[] = { "∑j¥MÆ—ƒy", "±∆¶Ê∫]", "¶^®Ï≠∫≠∂" };
+		int select = JOptionPane.showOptionDialog(null, "≥X´»±z¶n°G", null, JOptionPane.YES_OPTION,
+				JOptionPane.QUESTION_MESSAGE, null, login, null);
+		if (select != 2) {
+			switch (select) {
+				case 0:
+					borrow_book();
+					break;
+				case 1:
+					ranking();
+					break;
+				case 2:
+					break;
+			}
 			action();
 		}
 	}
-	public void borrow_book(){
+
+	public void borrow_book() {
 		userbook_manage ubm = new userbook_manage();
 		book_manage bm = new book_manage();
-		book adbook = new book("","","");
+		book adbook = new book("", "", "");
 		search_books = bm.new_search_gui();
 		JFrame jf = new JFrame();
-		jf.setSize(500,500);
+		jf.setSize(500, 500);
 		jf.setLocationRelativeTo(null);
 		JPanel myPanel = new JPanel();
-		GridLayout experimentLayout = new GridLayout(0,1);
+		GridLayout experimentLayout = new GridLayout(0, 1);
 		myPanel.setLayout(experimentLayout);
-		if(search_books.size() != 0){
-			myPanel.add(new JLabel("Êõ∏Âêç„ÄÄ„ÄÄ„ÄÄÂá∫ÁâàÁ§æ„ÄÄ„ÄÄ„ÄÄ‰ΩúËÄÖ„ÄÄ„ÄÄ„ÄÄ„ÄÄÁãÄÊÖã\n"));
-			for (book b:search_books){
-				myPanel.add(new JLabel(b.getname() +"„ÄÄ„ÄÄ„ÄÄ"+ b.getpublish() +"„ÄÄ„ÄÄ„ÄÄ"+ b.getauthor() +"„ÄÄ„ÄÄ„ÄÄ"+ (b.getsituation() == "available" ? "ÂèØÂÄüÈñ±":"Â∑≤Ë¢´ÂÄüÈñ±(Ëá≥" + ubm.retrieve_date(b.getname())+")")));
+		if (search_books.size() != 0) {
+			myPanel.add(new JLabel("Æ—¶W°@°@°@•X™©™¿°@°@°@ß@™Ã°@°@°@°@™¨∫A\n"));
+			for (book b : search_books) {
+				myPanel.add(new JLabel(b.getname() + "°@°@°@" + b.getpublish() + "°@°@°@" + b.getauthor() + "°@°@°@"
+						+ (b.getsituation() == "available" ? "•i≠…æ\" : "§w≥Q≠…æ\(¶‹" + ubm.retrieve_date(b.getname()) + ")")));
 			}
 			JOptionPane.showMessageDialog(null, myPanel);
-		}
-		else {
-			JOptionPane.showMessageDialog(null, "Êü•ÁÑ°Ê≠§Êõ∏Á±ç");
+		} else {
+			JOptionPane.showMessageDialog(null, "¨dµL¶πÆ—ƒy");
 		}
 	}
-}
 
-/*public void watchinfo(){
-    search s = new search();
-		JPanel myPanel = new JPanel();
-        s.search_gui();
-    for (book b:search_books){
-		myPanel.add(new JLabel("Êõ∏Âêç:" + b.getname()));
-		myPanel.add(Box.createHorizontalStrut(15));
+	public void ranking() {
+		book_manage bm = new book_manage();
+		userbook_manage ubm = new userbook_manage();
+		String[] t = bm.top3().split(",");
+
+		if (t.length >= 0) {
+			JFrame jf = new JFrame();
+			jf.setSize(500, 500);
+			jf.setLocationRelativeTo(null);
+			JPanel myPanel = new JPanel();
+			GridLayout experimentLayout = new GridLayout(0, 1);
+			myPanel.setLayout(experimentLayout);
+			myPanel.add(new JLabel("±∆¶Ê	Æ—¶W\n"));
+			for (int i = 0; i < t.length; i++) {
+				myPanel.add(new JLabel(i + 1 + "\t" + t[i]));
+			}
+			String borrow_list[] = { "§£∞ ß@", "µ˘•U" };
+			int result = JOptionPane.showOptionDialog(null, myPanel, "§£∞ ß@", JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, borrow_list, null);
+			account_manage ac = new account_manage();
+			if (result == 1) {
+				ac.add();
+			}
+		}
+
 	}
-		GridLayout experimentLayout = new GridLayout(0,2);
-		myPanel.setLayout(experimentLayout);
-       
-int result = JOptionPane.showConfirmDialog(null,myPanel,"Êõ∏Á±çÂêçÁ®±",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-if(result == JOptionPane.OK_OPTION){
-    if(search_books.size() == 0){JOptionPane.showMessageDialog(null, "Êü•ÁÑ°Ê≠§Êõ∏Á±ç");}
 }
-}*/
-
-
+/*
+ * public void watchinfo(){
+ * search s = new search();
+ * JPanel myPanel = new JPanel();
+ * s.search_gui();
+ * for (book b:search_books){
+ * myPanel.add(new JLabel("Æ—¶W:" + b.getname()));
+ * myPanel.add(Box.createHorizontalStrut(15));
+ * }
+ * GridLayout experimentLayout = new GridLayout(0,2);
+ * myPanel.setLayout(experimentLayout);
+ * 
+ * int result =
+ * JOptionPane.showConfirmDialog(null,myPanel,"Æ—ƒy¶W∫Ÿ",JOptionPane.YES_NO_OPTION,
+ * JOptionPane.QUESTION_MESSAGE);
+ * if(result == JOptionPane.OK_OPTION){
+ * if(search_books.size() == 0){JOptionPane.showMessageDialog(null, "¨dµL¶πÆ—ƒy");}
+ * }
+ */

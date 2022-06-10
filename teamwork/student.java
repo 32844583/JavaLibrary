@@ -3,194 +3,286 @@ import java.awt.*;
 import java.util.*;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
-public class student{
+
+public class student extends user {
 	private ArrayList<book> search_books = new ArrayList<book>();
 	private ArrayList<userbook> userbooks = new ArrayList<userbook>();
 	private ArrayList<userbook> history = new ArrayList<userbook>();
-	private String name;
-	private String account;
-	private String password;
-	private String identification;
 	private int money;
 	private int lendup;
-	public student(String n, String acc, String pass, String ident){
-		this.name = n;
-		this.account = acc;
-		this.password = pass;
-		this.identification = ident;
+
+	public student(String n, String acc, String pass, String ident) {
+		super(n, acc, pass, ident);
 		this.lendup = 10;
 	}
-	public void action(){
-		String login[] = {"ç™»å‡º","æŸ¥è©¢æ‰€æœ‰å€Ÿé–±è³‡æ–™","æœå°‹æ›¸ç±"};
+
+	public void action() {
+		String login[] = { "µn¥X", "¬d¸ß©Ò¦³­É¾\¸ê®Æ", "·j´M®ÑÄy", "¬d¸ß±Æ¦æº]" };
 		int select;
 		do {
-			select = JOptionPane.showOptionDialog(null,"å­¸ç”Ÿ" + this.name+"æ‚¨å¥½:", "ä¸€èˆ¬ä½¿ç”¨è€…ä»‹é¢", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,null);
-			switch (select){
-         		case 1:
-            			watchinfo();
-            			break;
-         		case 2:
-            			borrow_book();
-            			break;
-       		}
-		}while (select != 0 && select != -1);
-		
-		if(select == -1) {
-			JOptionPane.showMessageDialog(null, "è«‹é‡æ–°æ“ä½œ");
+			select = JOptionPane.showOptionDialog(null, "¾Ç¥Í" + super.getname() + "±z¦n¡G", "¤@¯ë¨Ï¥ÎªÌ¤¶­±",
+					JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, login, null);
+			switch (select) {
+				case 1:
+					watchinfo();
+					break;
+				case 2:
+					borrow_book();
+					break;
+				case 3:
+					ranking();
+					break;
+			}
+		} while (select != 0 && select != -1);
+
+		if (select == -1) {
+			JOptionPane.showMessageDialog(null, "½Ğ­«·s¾Ş§@");
 		}
 	}
-	public void watchinfo(){
-		if(userbooks.size() > 0) {
+
+	public void ranking() {
+		book_manage bm = new book_manage();
+		userbook_manage ubm = new userbook_manage();
+		String[] t = bm.top3().split(",");
+
+		if (4 > t.length && t.length > 0) {
 			JFrame jf = new JFrame();
-			jf.setSize(500,500);
+			jf.setSize(500, 500);
 			jf.setLocationRelativeTo(null);
 			JPanel myPanel = new JPanel();
-			GridLayout experimentLayout = new GridLayout(0,ï¼‘);
+			GridLayout experimentLayout = new GridLayout(0, 1);
 			myPanel.setLayout(experimentLayout);
-			myPanel.add(new JLabel("æ›¸åã€€ã€€ã€€" + "ç‹€æ…‹"));
-			for (userbook ub:userbooks){
-				myPanel.add(new JLabel(ub.getname() +"ã€€ã€€"+ (ub.getsituation()=="reserved"? "é ç´„ä¸­":"å€Ÿé–±ä¸­(è‡³" + ub.getretrievedate()+")")));
+			myPanel.add(new JLabel("±Æ¦æ\t®Ñ¦W\n"));
+			for (int i = 0; i < t.length; i++) {
+				myPanel.add(new JLabel(i + 1 + "\t" + t[i]));
 			}
-			for (userbook ub:history) {
-				myPanel.add(new JLabel(ub.getname() + "ã€€ã€€"  + "å·²æ­¸é‚„(æ–¼"+ ub.getretrievedate() + ")"));
-			}
-			myPanel.add(new JLabel("ç›®å‰å€Ÿé–±æ•¸é‡:ã€€" + userbooks.size()));
-			myPanel.add(new JLabel("ç›®å‰éœ€ç¹³ç´ç½°é‡‘:ã€€" + money));
 			final JComboBox<String> comboBox = new JComboBox<String>();
-			JLabel label = new JLabel("è«‹é¸æ“‡æ­¸é‚„æˆ–è¦å–æ¶ˆé ç´„çš„æ›¸ç±:");
+			JLabel label = new JLabel("½Ğ¿ï¾Ü­n­É¾\ªº®ÑÄy¡G");
 			myPanel.add(label);
-			for(userbook ub : userbooks){
+			for (String s : t) {
+				comboBox.addItem(s);
+			}
+			comboBox.setSelectedIndex(0);
+			myPanel.add(comboBox);
+			String borrow_list[] = { "­É¾\", "¤£°Ê§@" };
+			int result = JOptionPane.showOptionDialog(null, myPanel, "­É¾\", JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, borrow_list, null);
+			book adbook = new book("", "", "");
+			adbook = bm.borrow_book_search(comboBox.getSelectedItem().toString());
+			System.out.println(adbook.getname());
+			if (result == 0) {
+				if (userbooks.size() >= this.lendup) {
+					JOptionPane.showMessageDialog(null, "¶W¹L­É¾\¼Æ¶q");
+				} else {
+					String response = "";
+					if (adbook.getsituation() == "unavailable") {
+						int you_borrow = 0;
+						for (userbook ub : userbooks) {
+							if (ub.getname() == adbook.getname()) {
+								you_borrow = 1;
+							}
+						}
+						if (you_borrow == 1) {
+							response += "±z¤w­É¾\, ¤£¥i­«½Æ­É¾\" + ubm.retrieve_date(adbook.getname());
+							JOptionPane.showMessageDialog(null, response);
+						} else {
+							response += "\n¦¹®Ñ¤w³Q§O¤H­É¾\¦Ü" + ubm.retrieve_date(adbook.getname());
+							JOptionPane.showMessageDialog(null, response);
+							String reserve[] = { "¹w¬ù", "¤£°Ê§@" };
+							int select = JOptionPane.showOptionDialog(null, "±z­n¹w¬ù¶Ü¡H", null + "student",
+									JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, reserve, null);
+							if (select == 0) {
+								userbook ub = new userbook(adbook.getname(), adbook.getpublish(), adbook.getauthor(),
+										"reserved");
+								userbooks.add(ub);
+							}
+						}
+					} else {
+						userbook ub = new userbook(adbook.getname(), adbook.getpublish(), adbook.getauthor());
+						JOptionPane.showMessageDialog(null, "­É¾\¦Ü" + ub.getretrievedate());
+						userbooks.add(ub);
+						adbook.setsituation("unavailable");
+						adbook.setcount();
+					}
+				}
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "¥Ø«eµL®ÑÄy¡I");
+		}
+	}
+
+	public void watchinfo() {
+		if (userbooks.size() > 0) {
+			JFrame jf = new JFrame();
+			jf.setSize(500, 500);
+			jf.setLocationRelativeTo(null);
+			JPanel myPanel = new JPanel();
+			GridLayout experimentLayout = new GridLayout(0, ¢°);
+			myPanel.setLayout(experimentLayout);
+			myPanel.add(new JLabel("®Ñ¦W¡@¡@¡@" + "ª¬ºA"));
+			for (userbook ub : userbooks) {
+				myPanel.add(new JLabel(ub.getname() + "¡@¡@"
+						+ (ub.getsituation() == "reserved" ? "¹w¬ù¤¤" : "­É¾\¤¤(¦Ü" + ub.getretrievedate() + ")")));
+			}
+			for (userbook ub : history) {
+				myPanel.add(new JLabel(ub.getname() + "¡@¡@" + "¤wÂkÁÙ(©ó" + ub.getretrievedate() + ")"));
+			}
+			myPanel.add(new JLabel("¥Ø«e­É¾\¼Æ¶q¡G	" + userbooks.size()));
+			myPanel.add(new JLabel("¥Ø«e»İÃº¯Ç»@ª÷¡G	" + money));
+			final JComboBox<String> comboBox = new JComboBox<String>();
+			JLabel label = new JLabel("½Ğ¿ï¾ÜÂkÁÙ©Î­n¨ú®ø¹w¬ùªº®ÑÄy¡G");
+			myPanel.add(label);
+			for (userbook ub : userbooks) {
 				comboBox.addItem(ub.getname());
 			}
 			comboBox.setSelectedIndex(0);
-	        myPanel.add(comboBox);
-	        String retrieve_list[] = {"æ­¸é‚„", "ä¸å‹•ä½œ"};
-			int result = JOptionPane.showOptionDialog(null, myPanel, "æ‰€æœ‰å€Ÿé–±è³‡æ–™",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,retrieve_list,null);
+			myPanel.add(comboBox);
+			String retrieve_list[] = { "¨ú®ø¹w¬ù", "¤£°Ê§@" };
+			int result = JOptionPane.showOptionDialog(null, myPanel, "©Ò¦³­É¾\¸ê®Æ", JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, retrieve_list, null);
 			if (result == 0) {
-				for(userbook ub:userbooks){
-					if(ub.getname() == comboBox.getSelectedItem().toString()){
-						if(ub.getsituation() == "reserved"){
+				for (userbook ub : userbooks) {
+					if (ub.getname() == comboBox.getSelectedItem().toString()) {
+						if (ub.getsituation() == "reserved") {
 							cancel_reserved(ub);
-							JOptionPane.showMessageDialog(null, "å–æ¶ˆé ç´„!!");
-						}
-						else{
+							JOptionPane.showMessageDialog(null, "¨ú®ø¹w¬ù¡I¡I");
+						} else {
 							retrieve(ub);
 						}
 						break;
 					}
 				}
 			}
-		}
-		else {
+		} else {
 			JFrame jf = new JFrame();
-			jf.setSize(500,500);
+			jf.setSize(500, 500);
 			jf.setLocationRelativeTo(null);
 			JPanel myPanel = new JPanel();
-			GridLayout experimentLayout = new GridLayout(0,1);
+			GridLayout experimentLayout = new GridLayout(0, 1);
 			myPanel.setLayout(experimentLayout);
-			myPanel.add(new JLabel("æ›¸åã€€ã€€ã€€" + "ç‹€æ…‹"));
-			myPanel.add(new JLabel("ç›®å‰å€Ÿé–±æ•¸é‡:ã€€" + userbooks.size()));
-			myPanel.add(new JLabel("ç›®å‰éœ€ç¹³ç´ç½°é‡‘:ã€€" + money));
-			for (userbook ub:history) {
-				myPanel.add(new JLabel(ub.getname() + "ã€€ã€€"  + "å·²æ­¸é‚„(æ–¼"+ ub.getretrievedate() + ")"));
+			myPanel.add(new JLabel("®Ñ¦W¡@¡@¡@" + "ª¬ºA"));
+			myPanel.add(new JLabel("¥Ø«e­É¾\¼Æ¶q¡G¡@" + userbooks.size()));
+			myPanel.add(new JLabel("¥Ø«e»İÃº¯Ç»@ª÷¡G¡@" + money));
+			for (userbook ub : history) {
+				myPanel.add(new JLabel(ub.getname() + "¡@¡@" + "¤wÂkÁÙ(©ó" + ub.getretrievedate() + ")"));
 			}
 			JOptionPane.showMessageDialog(null, myPanel);
 		}
-		
+
 	}
-	public void retrieve(userbook ub){
-			book_manage bkm = new book_manage();
-			bkm.user_retrieve(ub.getname());
-			userbooks.remove(ub);
-			history.add(ub);
-			Date now = new Date();
-			JOptionPane.showMessageDialog(null, "æ­¸é‚„æˆåŠŸ!!\n" + (money_amount(ub, now) == 0 ? "ç„¡æ–°å¢ç½°é‡‘":"æ–°å¢ç½°é‡‘" + money_amount(ub, now)));
-			watchinfo();
+
+	public void retrieve(userbook ub) {
+		book_manage bkm = new book_manage();
+		bkm.user_retrieve(ub.getname());
+		userbooks.remove(ub);
+		history.add(ub);
+		Date now = new Date();
+		JOptionPane.showMessageDialog(null,
+				"ÂkÁÙ¦¨¥\¡I¡I\n" + (money_amount(ub, now) == 0 ? "µL·s¼W»@ª÷" : "·s¼W»@ª÷" + money_amount(ub, now)));
+		watchinfo();
 	}
-	public void borrow_book(){
+
+	public void borrow_book() {
 		userbook_manage ubm = new userbook_manage();
 		book_manage bm = new book_manage();
-		book adbook = new book("","","");
+		book adbook = new book("", "", "");
 		search_books = bm.new_search_gui();
-		for(book b : search_books){
-		 System.out.println(b.getname());
+		for (book b : search_books) {
+			System.out.println(b.getname());
 		}
 		JFrame jf = new JFrame();
-		jf.setSize(500,500);
+		jf.setSize(500, 500);
 		jf.setLocationRelativeTo(null);
 		JPanel myPanel = new JPanel();
-		GridLayout experimentLayout = new GridLayout(0,1);
+		GridLayout experimentLayout = new GridLayout(0, 1);
 		myPanel.setLayout(experimentLayout);
-		myPanel.add(new JLabel("æ›¸åã€€ã€€ã€€å‡ºç‰ˆç¤¾ã€€ã€€ã€€ä½œè€…ã€€ã€€ã€€ã€€ç‹€æ…‹\n"));
+		myPanel.add(new JLabel("®Ñ¦W¡@¡@¡@¥Xª©ªÀ¡@¡@¡@§@ªÌ¡@¡@¡@¡@ª¬ºA\n"));
 
-		if(search_books.size() != 0){
-			for (book b:search_books){
-			myPanel.add(new JLabel(b.getname() +"ã€€ã€€ã€€"+ b.getpublish() +"ã€€ã€€ã€€"+ b.getauthor() +"ã€€ã€€ã€€"+ (b.getsituation() == "available" ? "å¯å€Ÿé–±":"å·²è¢«å€Ÿé–±(è‡³" + ubm.retrieve_date(b.getname())+")")));
+		if (search_books.size() != 0) {
+			for (book b : search_books) {
+				myPanel.add(new JLabel(b.getname() + "¡@¡@¡@" + b.getpublish() + "¡@¡@¡@" + b.getauthor() + "¡@¡@¡@"
+						+ (b.getsituation() == "available" ? "¥i­É¾\" : "¤w³Q­É¾\(¦Ü" + ubm.retrieve_date(b.getname()) + ")")));
 			}
 			final JComboBox<String> comboBox = new JComboBox<String>();
-			JLabel label = new JLabel("è«‹é¸æ“‡è¦å€Ÿé–±çš„æ›¸ç±");
+			JLabel label = new JLabel("½Ğ¿ï¾Ü­n­É¾\ªº®ÑÄy");
 			myPanel.add(label);
-		
-			for(book b : search_books){
+
+			for (book b : search_books) {
 				comboBox.addItem(b.getname());
 			}
 			comboBox.setSelectedIndex(0);
 			myPanel.add(comboBox);
-			String borrow_list [] = {"å€Ÿé–±", "ä¸å‹•ä½œ"};
-			int result = JOptionPane.showOptionDialog(null, myPanel,"æœå°‹èˆ‡å€Ÿé–±ä»‹é¢",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,borrow_list,null);
+			String borrow_list[] = { "­É¾\", "¤£°Ê§@" };
+			int result = JOptionPane.showOptionDialog(null, myPanel, "·j´M»P­É¾\¤¶­±", JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, borrow_list, null);
 			adbook = bm.borrow_book_search(comboBox.getSelectedItem().toString());
-			if(result == 0){
-				if(userbooks.size() >= this.lendup){
-					JOptionPane.showMessageDialog(null, "è¶…éå€Ÿé–±æ•¸é‡");
-				}
-				else{
+			if (result == 0) {
+				if (userbooks.size() >= this.lendup) {
+					JOptionPane.showMessageDialog(null, "¶W¹L­É¾\¼Æ¶q");
+				} else {
 					String response = "";
-					if(adbook.getsituation() == "unavailable"){
+					if (adbook.getsituation() == "unavailable") {
 						int you_borrow = 0;
-						for(userbook ub : userbooks){
-							if(ub.getname() == adbook.getname()){
+						for (userbook ub : userbooks) {
+							if (ub.getname() == adbook.getname()) {
 								you_borrow = 1;
 							}
 						}
-						if(you_borrow == 1){
-							response += "æ‚¨å·²å€Ÿé–±, ä¸å¯é‡è¤‡å€Ÿé–±" + ubm.retrieve_date(adbook.getname());
+						if (you_borrow == 1) {
+							response += "±z¤w­É¾\, ¤£¥i­«½Æ­É¾\" + ubm.retrieve_date(adbook.getname());
 							JOptionPane.showMessageDialog(null, response);
-						}
-						else{
-							response += "\næ­¤æ›¸å·²è¢«åˆ¥äººå€Ÿé–±è‡³" + ubm.retrieve_date(adbook.getname());
+						} else {
+							response += "\n¦¹®Ñ¤w³Q§O¤H­É¾\¦Ü" + ubm.retrieve_date(adbook.getname());
 							JOptionPane.showMessageDialog(null, response);
-							String reserve[] = {"é ç´„", "ä¸å‹•ä½œ"};
-							int select = JOptionPane.showOptionDialog(null,"æ‚¨è¦é ç´„å—?",null+"student", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,reserve,null);
-							if(select == 0){
-								userbook ub = new userbook(adbook.getname(), adbook.getpublish(), adbook.getauthor(), "reserved");
+							String reserve[] = { "¹w¬ù", "¤£°Ê§@" };
+							int select = JOptionPane.showOptionDialog(null, "±z­n¹w¬ù¶Ü¡H", null + "student",
+									JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, reserve, null);
+							if (select == 0) {
+								userbook ub = new userbook(adbook.getname(), adbook.getpublish(), adbook.getauthor(),
+										"reserved");
 								userbooks.add(ub);
 							}
 						}
-					}
-					else{
+					} else {
 						userbook ub = new userbook(adbook.getname(), adbook.getpublish(), adbook.getauthor());
-						JOptionPane.showMessageDialog(null, "å€Ÿé–±è‡³" + ub.getretrievedate());
+						JOptionPane.showMessageDialog(null, "­É¾\¦Ü" + ub.getretrievedate());
 						userbooks.add(ub);
 						adbook.setsituation("unavailable");
+						adbook.setcount();
 					}
 				}
 			}
-		}
-		else{
-			JOptionPane.showMessageDialog(null, "æŸ¥ç„¡æ­¤æ›¸ç±");
+		} else {
+			JOptionPane.showMessageDialog(null, "¬dµL¦¹®ÑÄy");
 		}
 	}
-	public void cancel_reserved(userbook ub){
+
+	public void cancel_reserved(userbook ub) {
 		userbooks.remove(ub);
 	}
-	public int money_amount(userbook ub, Date now){
+
+	public int money_amount(userbook ub, Date now) {
 		long diff = now.getTime() - ub.getretrievedate2().getTime();
-		if (diff < 0){diff = 0;}
+		if (diff < 0) {
+			diff = 0;
+		}
 		TimeUnit time = TimeUnit.DAYS;
 		long difference = time.convert(diff, TimeUnit.MILLISECONDS);
-		int temp_money = (int)(difference)*100;
-		money += temp_money ;
+		int temp_money = (int) (difference) * 100;
+		money += temp_money;
 		return temp_money;
 	}
-	public String getname(){return name;}
+
+	public String getname() {
+		return super.getname();
+	}
+
+	public String support_retrieve_date(String bkname) {
+		for (userbook ub : userbooks) {
+			if (ub.getname() == bkname) {
+				return ub.getretrievedate();
+			}
+		}
+		return "0";
+	}
 }

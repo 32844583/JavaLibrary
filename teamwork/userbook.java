@@ -10,7 +10,7 @@ public class userbook{
 	private Date borrow;
 	private Date retrieve;
 	private String situation;
-	//­É¾\
+	//???\
 	public userbook(String n, String p, String a){
 		setname(n);
 		setpublish(p);
@@ -27,7 +27,7 @@ public class userbook{
 		this.borrow_date = dateFormat.format(borrow);
 		
 	}
-	//¹w¬ù
+	//?w??
 	public userbook(String n, String p, String a, String s){
 		setname(n);
 		setpublish(p);

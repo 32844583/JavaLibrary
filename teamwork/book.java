@@ -3,6 +3,7 @@ public class book{
 	private String publish;
 	private String author;
 	private String situation;
+	private int count = 1;
 	public book(String n, String p, String a){
 		this.name = n;
 		this.publish = p;
@@ -20,5 +21,6 @@ public class book{
 	public void setpublish(String p){this.publish = p;}
 	public void setauthor(String a){this.author = a;}
 	public void setsituation(String s){this.situation = s;}
-	
+	public void setcount(){this.count++;}
+	public int getcount(){return count;}
 }

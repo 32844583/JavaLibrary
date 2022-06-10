@@ -1,49 +1,57 @@
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
-public class lib extends account_manage{
-	public static void main(String [] args){
+
+public class lib extends account_manage {
+	public static void main(String[] args) {
 		account_manage ac = new account_manage();
 		ac.initialize_user();
 		book_manage bm = new book_manage();
 		bm.initialize_book();
 		menu();
 	}
-	public static void menu(){
-		String login[] = {"Ë®ªÂÜä","ÁôªÂÖ•","Êü•Ë©¢Áî®","Ë®™ÂÆ¢"};
-    	int select;
-       	account_manage ac = new account_manage();
-		do{
-			select = JOptionPane.showOptionDialog(null,"Ê≠°Ëøé‰æÜÂà∞‰∏≠Â§ßÂÄüÊõ∏Á≥ªÁµ±!", "‰∏≠Â§ßÂÄüÈñ±Á≥ªÁµ±", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,1);
-			if (select == 0){
+
+	public static void menu() {
+		String login[] = { "µ˘•U", "µn§J", "¨d∏ﬂ•Œ", "≥X´»" };
+		int select;
+		account_manage ac = new account_manage();
+		do {
+			select = JOptionPane.showOptionDialog(null, "≈w™Ô®”®Ï§§§j≠…Æ—®t≤Œ°I", "§§§j≠…æ\®t≤Œ", JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, login, 1);
+			if (select == 0) {
 				ac.add();
 			}
 
-			if(select == 1){
+			if (select == 1) {
 				user u = ac.login();
 				userbook_manage ubm = new userbook_manage();
-				if (u.getidentification()  == "Teacher"){
-					
-				}
-				else if (u.getidentification().equals("Student")){
+				if (u.getidentification() == "Teacher") {
+					teacher tea = new teacher(u.getname(), u.getaccount(), u.getpassword(), u.getidentification());
+					ubm.addtea(tea);
+					tea.action();
+
+				} else if (u.getidentification().equals("Student")) {
 					student stu = new student(u.getname(), u.getaccount(), u.getpassword(), u.getidentification());
 					ubm.addstu(stu);
 					stu.action();
-					
-				}
-				else if (u.getidentification()  == "Staff"){
-				}
-				else if (u.getidentification().equals("Admin")){
-					adminstrator temp_bkm = new adminstrator(u.getname(), u.getaccount(), u.getpassword(), u.getidentification());
+
+				} else if (u.getidentification().equals("Staff")) {
+					staff sta = new staff(u.getname(), u.getaccount(), u.getpassword(), u.getidentification());
+					ubm.addsta(sta);
+					sta.action();
+
+				} else if (u.getidentification().equals("Admin")) {
+					adminstrator temp_bkm = new adminstrator(u.getname(), u.getaccount(), u.getpassword(),
+							u.getidentification());
 					temp_bkm.action(u);
+				} else {
+					System.out.println("No Existing");
 				}
-				else{System.out.println("No Existing");}
-			}
-			else if(select == 3){
+			} else if (select == 3) {
 				visitor v = new visitor();
 				v.action();
 			}
-		}while(select ==0 || select ==1 || select ==2 || select ==3);
-		JOptionPane.showMessageDialog(null,"Ë¨ùË¨ùÂÖâËá®");
-   	}
-	
+		} while (select == 0 || select == 1 || select == 2 || select == 3);
+		JOptionPane.showMessageDialog(null, "¡¬¡¬•˙¡{");
+	}
+
 }

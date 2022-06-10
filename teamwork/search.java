@@ -9,7 +9,7 @@ public class search extends book_manage{
 		JPanel myPanel = new JPanel();
 		GridLayout experimentLayout = new GridLayout(0,3);
 		myPanel.setLayout(experimentLayout);
-		myPanel.add(new JLabel("é—œéµå­—æœå°‹:"));
+		myPanel.add(new JLabel("ÃöÁä¦r·j´M:"));
 		myPanel.add(xField);
 
 		int result = JOptionPane.showConfirmDialog(null, myPanel,"Search", JOptionPane.OK_CANCEL_OPTION);
