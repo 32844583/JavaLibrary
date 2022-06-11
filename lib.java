@@ -11,15 +11,11 @@ public class lib extends account_manage {
 	}
 
 	public static void menu() {
-<<<<<<< HEAD
-		String login[] = { "Ë®ªÂÜä", "ÁôªÂÖ•", "Ë®™ÂÆ¢" };
-=======
 		String login[] = { "µ˘•U", "µn§J", "≥X´»" };
->>>>>>> 32cdc9c (java)
 		int select;
 		account_manage ac = new account_manage();
 		do {
-			select = JOptionPane.showOptionDialog(null, "Ê≠°Ëøé‰æÜÂà∞‰∏≠Â§ßÂÄüÊõ∏Á≥ªÁµ±ÔºÅ", "‰∏≠Â§ßÂÄüÈñ±Á≥ªÁµ±", JOptionPane.YES_NO_CANCEL_OPTION,
+			select = JOptionPane.showOptionDialog(null, "≈w™Ô®”®Ï§§§j≠…Æ—®t≤Œ°I", "§§§j≠…æ\®t≤Œ", JOptionPane.YES_NO_CANCEL_OPTION,
 					JOptionPane.QUESTION_MESSAGE, null, login, 1);
 			if (select == 0) {
 				ac.regis();
@@ -55,11 +51,7 @@ public class lib extends account_manage {
 				v.action();
 			}
 		} while (select == 0 || select == 1 || select == 2 || select == 3);
-<<<<<<< HEAD
-		JOptionPane.showMessageDialog(null, "Ë¨ùË¨ùÂÖâËá®");
-=======
 		JOptionPane.showMessageDialog(null, "¡¬¡¬•˙¡{","§§§jπœÆ—®t≤Œ",1);
->>>>>>> 32cdc9c (java)
 	}
 
 }

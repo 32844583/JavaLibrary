@@ -14,14 +14,10 @@ public class adminstrator extends user{
 	public void action(user u){
 		book_manage b = new book_manage();
 		account_manage acm = new account_manage();
-		String login[] = {"ç™»å‡º","æŸ¥çœ‹æˆ–ç·¨è¼¯ä½¿ç”¨è€…","ç·¨è¼¯æˆ–åˆªé™¤æ›¸ç±","æ–°å¢æ›¸ç±"};
+		String login[] = {"µn¥X","¬d¬İ©Î½s¿è¨Ï¥ÎªÌ","½s¿è©Î§R°£®ÑÄy","·s¼W®ÑÄy"};
 		int select;
 		do{
-<<<<<<< HEAD
-			select = JOptionPane.showOptionDialog(null,"ç®¡ç†å“¡"+u.getname()+"ä½ å¥½, è«‹å•æ‚¨è¦?",null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,null);
-=======
 			select = JOptionPane.showOptionDialog(null,"ºŞ²z­û"+u.getname()+"§A¦n¡A½Ğ°İ±z­n¡H",null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,null);
->>>>>>> 32cdc9c (java)
 			switch (select){
          		case 1:
          			acm.watch_user(u);
@@ -35,14 +31,10 @@ public class adminstrator extends user{
    			}
 		}while(select != -1 && select != 0);
 		if(select == -1) {
-			JOptionPane.showMessageDialog(null, "è«‹é‡æ–°æ“ä½œ");
+			JOptionPane.showMessageDialog(null, "½Ğ­«·s¾Ş§@");
 		}
 		else if(select == 0) {
-<<<<<<< HEAD
-			JOptionPane.showMessageDialog(null, "ç™»å‡º");
-=======
 			JOptionPane.showMessageDialog(null, "µn¥X","¤¤¤j¹Ï®Ñ¨t²Î",1);
->>>>>>> 32cdc9c (java)
 		}
 		
 		
@@ -64,19 +56,11 @@ public class adminstrator extends user{
 		myPanel.setLayout(experimentLayout);
 		if(search_books.size() != 0){
 			for (book b:search_books){
-<<<<<<< HEAD
-				myPanel.add(new JLabel("æ›¸å:" + b.getname()));
-				myPanel.add(Box.createHorizontalStrut(15));
-			}
-			final JComboBox<String> comboBox = new JComboBox<String>();
-			JLabel label = new JLabel("è«‹é¸æ“‡è¦ç·¨è¼¯çš„æ›¸ç±");
-=======
 				myPanel.add(new JLabel("®Ñ¦W¡G" + b.getname()));
 				myPanel.add(Box.createHorizontalStrut(15));
 			}
 			final JComboBox<String> comboBox = new JComboBox<String>();
 			JLabel label = new JLabel("½Ğ¿ï¾Ü­n½s¿èªº®ÑÄy");
->>>>>>> 32cdc9c (java)
 			myPanel.add(label);
 			
 			
@@ -90,13 +74,8 @@ public class adminstrator extends user{
 			int result = JOptionPane.showConfirmDialog(null, myPanel,"search",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if(result == 0) {
 				adbook = bm.borrow_book_search(comboBox.getSelectedItem().toString());
-<<<<<<< HEAD
-				String login[] = {"ç·¨è¼¯","åˆªé™¤","é©—è­‰"};
-				int select = JOptionPane.showOptionDialog(null,"è«‹å•æ‚¨è¦","bookmanage", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,null);
-=======
 				String login[] = {"½s¿è","§R°£","ÅçÃÒ"};
 				int select = JOptionPane.showOptionDialog(null,"½Ğ°İ±z­n","bookmanage", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,login,null);
->>>>>>> 32cdc9c (java)
 				
 				if (select !=3){
 					switch (select){
@@ -105,11 +84,7 @@ public class adminstrator extends user{
 		            			break;
 		         			case 1:
 		            			bm.remove(adbook);
-<<<<<<< HEAD
-								JOptionPane.showMessageDialog(null, "åˆªé™¤æˆåŠŸ!");
-=======
 								JOptionPane.showMessageDialog(null, "§R°£¦¨¥\¡I","®ÑÄy½s¿è¨t²Î",1);
->>>>>>> 32cdc9c (java)
 		            			break;
 		         			case 2:
 								bm.show();
@@ -122,11 +97,7 @@ public class adminstrator extends user{
 		}
 			
 		else {
-<<<<<<< HEAD
-			JOptionPane.showMessageDialog(null, "æŸ¥ç„¡æ­¤æ›¸ç±");
-=======
 			JOptionPane.showMessageDialog(null, "¬dµL¦¹®ÑÄy","®ÑÄy½s¿è¨t²Î",1);
->>>>>>> 32cdc9c (java)
 		}
 	}
 	public void revise(book b){
@@ -136,16 +107,6 @@ public class adminstrator extends user{
  
       		JPanel myPanel = new JPanel();
       		GridLayout experimentLayout = new GridLayout(0,2);
-<<<<<<< HEAD
-			myPanel.add(new JLabel("æƒ³ä¿®æ”¹å“ªä¸€é …å‘¢?"));
-			myPanel.add(Box.createHorizontalStrut(15));
-      		myPanel.setLayout(experimentLayout);
-      		myPanel.add(new JLabel("æ›¸å:"));
-      		myPanel.add(xField);
-      		myPanel.add(new JLabel("ä½œè€…:"));
-      		myPanel.add(yField);
-      		myPanel.add(new JLabel("å‡ºç‰ˆç¤¾:"));
-=======
 			myPanel.add(new JLabel("·Q­×§ï­ş¤@¶µ©O¡H"));
 			myPanel.add(Box.createHorizontalStrut(15));
       		myPanel.setLayout(experimentLayout);
@@ -154,7 +115,6 @@ public class adminstrator extends user{
       		myPanel.add(new JLabel("§@ªÌ¡G"));
       		myPanel.add(yField);
       		myPanel.add(new JLabel("¥Xª©ªÀ¡G"));
->>>>>>> 32cdc9c (java)
       		myPanel.add(zField);
 
       		int result = JOptionPane.showConfirmDialog(null, myPanel,"revise", JOptionPane.OK_CANCEL_OPTION);
