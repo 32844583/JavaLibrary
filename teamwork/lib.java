@@ -4,9 +4,9 @@ import java.util.ArrayList;
 public class lib extends account_manage {
 	public static void main(String[] args) {
 		account_manage ac = new account_manage();
+		adminstrator admin = new adminstrator("","","","");
 		ac.initialize_user();
-		book_manage bm = new book_manage();
-		bm.initialize_book();
+		admin.initialize_book();
 		menu();
 	}
 
@@ -24,34 +24,32 @@ public class lib extends account_manage {
 			if (select == 1) {
 				user u = ac.login();
 				userbook_manage ubm = new userbook_manage();
-				if (u.getidentification() == "Teacher") {
+				if (u.getidentification() == "教員") {
 					teacher tea = new teacher(u.getname(), u.getaccount(), u.getpassword(), u.getidentification());
 					ubm.addtea(tea);
-					tea.action();
+					tea.action(u);
 
-				} else if (u.getidentification().equals("Student")) {
+				} else if (u.getidentification().equals("學生")) {
 					student stu = new student(u.getname(), u.getaccount(), u.getpassword(), u.getidentification());
 					ubm.addstu(stu);
-					stu.action();
+					stu.action(u);
 
-				} else if (u.getidentification().equals("Staff")) {
+				} else if (u.getidentification().equals("職員")) {
 					staff sta = new staff(u.getname(), u.getaccount(), u.getpassword(), u.getidentification());
 					ubm.addsta(sta);
-					sta.action();
+					sta.action(u);
 
-				} else if (u.getidentification().equals("Admin")) {
+				} else if (u.getidentification().equals("管理員")) {
 					adminstrator temp_bkm = new adminstrator(u.getname(), u.getaccount(), u.getpassword(),
 							u.getidentification());
 					temp_bkm.action(u);
-				} else {
-					System.out.println("No Existing");
 				}
 			} else if (select == 2) {
 				visitor v = new visitor();
 				v.action();
 			}
 		} while (select == 0 || select == 1 || select == 2 || select == 3);
-		JOptionPane.showMessageDialog(null, "謝謝光臨");
+		JOptionPane.showMessageDialog(null, "謝謝光臨","中大圖書系統",1);
 	}
 
 }
