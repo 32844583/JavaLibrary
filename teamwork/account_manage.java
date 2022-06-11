@@ -13,25 +13,26 @@ public class account_manage{
 	      JPanel myPanel = new JPanel();
 	      GridLayout experimentLayout = new GridLayout(0,3);
 	      myPanel.setLayout(experimentLayout);
-	      myPanel.add(new JLabel("姓名:")); 
+	      myPanel.add(new JLabel("姓名：")); 
 	      myPanel.add(uField); 
 	      myPanel.add(Box.createHorizontalStrut(15));// a spacer
-	      myPanel.add(new JLabel("帳號:"));
+	      myPanel.add(new JLabel("帳號："));
 	      myPanel.add(xField);
 	      myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-	      myPanel.add(new JLabel("密碼:"));
+	      myPanel.add(new JLabel("密碼："));
 	      myPanel.add(yField);
 	      myPanel.add(Box.createHorizontalStrut(15));
-	      JLabel label = new JLabel("身份別:");
+	      JLabel label = new JLabel("身份別：");
 	      myPanel.add(label);
-	      String[] listData = {"Student", "Teacher", "Staff", "Admin"};
+	      String[] listData = {"學生", "教師", "職員", "管理員"};
 	      final JComboBox<String> comboBox = new JComboBox<String>(listData);
 	      comboBox.setSelectedIndex(0);
 	      myPanel.add(comboBox);
-	      int result = JOptionPane.showConfirmDialog(null, myPanel,"registration", JOptionPane.OK_CANCEL_OPTION);
+
+	      int result = JOptionPane.showConfirmDialog(null, myPanel,"註冊系統", JOptionPane.OK_CANCEL_OPTION);
 	      if (result == JOptionPane.OK_OPTION) {
 	    	  if(xField.getText().equals("") || uField.getText().equals("") || yField.getText().equals("") ) {
-	    		  JOptionPane.showMessageDialog(null,"有尚未填入資料");
+	    		  JOptionPane.showMessageDialog(null,"有尚未填入資料","註冊系統",1);
 	    	  }
 	    	  else {
 	    		  int check = 0;
@@ -41,20 +42,20 @@ public class account_manage{
 		    		  }
 		    	  }
 		    	  if(check == 1) {
-		    		  JOptionPane.showMessageDialog(null,"帳號重複註冊");
+		    		  JOptionPane.showMessageDialog(null,"帳號重複註冊","註冊系統",1);
 		    	  }
 		    	  else {
-		    		  JOptionPane.showMessageDialog(null,"註冊成功！\n歡迎: "+comboBox.getSelectedItem()+" "+uField.getText());
-		        	  if(comboBox.getSelectedItem().toString() == "Student") {users.add(new student(uField.getText(), xField.getText(), yField.getText(), comboBox.getSelectedItem().toString()));}
-		        	  else if(comboBox.getSelectedItem().toString() == "Teacher") {users.add(new teacher(uField.getText(), xField.getText(), yField.getText(), comboBox.getSelectedItem().toString()));}
-		        	  else if(comboBox.getSelectedItem().toString() == "Staff") {users.add(new staff(uField.getText(), xField.getText(), yField.getText(), comboBox.getSelectedItem().toString()));}
-		        	  else if(comboBox.getSelectedItem().toString() == "Admin") {users.add(new adminstrator(uField.getText(), xField.getText(), yField.getText(), comboBox.getSelectedItem().toString()));}
+		    		  JOptionPane.showMessageDialog(null,"註冊成功！\n歡迎: "+comboBox.getSelectedItem()+" "+uField.getText(),"註冊系統",1);
+		        	  if(comboBox.getSelectedItem().toString() == "學生") {users.add(new student(uField.getText(), xField.getText(), yField.getText(), comboBox.getSelectedItem().toString()));}
+		        	  else if(comboBox.getSelectedItem().toString() == "教師") {users.add(new teacher(uField.getText(), xField.getText(), yField.getText(), comboBox.getSelectedItem().toString()));}
+		        	  else if(comboBox.getSelectedItem().toString() == "職員") {users.add(new staff(uField.getText(), xField.getText(), yField.getText(), comboBox.getSelectedItem().toString()));}
+		        	  else if(comboBox.getSelectedItem().toString() == "管理員") {users.add(new adminstrator(uField.getText(), xField.getText(), yField.getText(), comboBox.getSelectedItem().toString()));}
 		    	  }
 	    		  
 	    	  }
 	      }
 	      else {
-	    	  JOptionPane.showMessageDialog(null,"取消註冊");
+	    	  JOptionPane.showMessageDialog(null,"取消註冊","註冊系統",1);
 	      }
 	   }
 	public user login(){
@@ -63,10 +64,10 @@ public class account_manage{
       		JPanel myPanel = new JPanel();
       		GridLayout experimentLayout = new GridLayout(0,3);
       		myPanel.setLayout(experimentLayout);
-      		myPanel.add(new JLabel("帳號:"));
+      		myPanel.add(new JLabel("帳號："));
       		myPanel.add(xField);
       		myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-      		myPanel.add(new JLabel("密碼:"));
+      		myPanel.add(new JLabel("密碼："));
       		myPanel.add(yField);
       		String login_button[] = {"登入", "取消"};
       		int result = JOptionPane.showOptionDialog(null, myPanel,"登入介面", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, login_button,null);
@@ -76,23 +77,23 @@ public class account_manage{
       		while(result == 0 && (check == 0 && count < 3)){
       			for(user u:users){
       				if (u.getaccount().equals(xField.getText()) && u.getpassword().equals(yField.getText())){
-						JOptionPane.showMessageDialog(null,"登入成功!");
+						JOptionPane.showMessageDialog(null,"登入成功！","登入系統",1);
 						check = 1;
 						return u;
       				}		
       			}
 				if (check == 0){
-					JOptionPane.showMessageDialog(null,"登入失敗, 請確認帳號密碼是否正確");
+					JOptionPane.showMessageDialog(null,"登入失敗，請確認帳號密碼是否正確","登入系統",1);
 					count +=1;
-					result = JOptionPane.showConfirmDialog(null, myPanel,"login", JOptionPane.OK_CANCEL_OPTION);
+					result = JOptionPane.showConfirmDialog(null, myPanel,"登入系統", JOptionPane.OK_CANCEL_OPTION);
 				
      		}
-		if(result == JOptionPane.CANCEL_OPTION){JOptionPane.showMessageDialog(null,"取消登入");}
+		if(result == JOptionPane.CANCEL_OPTION){JOptionPane.showMessageDialog(null,"取消登入","登入系統",1);}
       	}
       	return ex;  // 帳號密碼錯誤或取消登入
       	
 	}
-	public void watch_user(user admin){
+	public void watch_user(){
 		JFrame jf = new JFrame();
 		jf.setSize(500,500);
 		jf.setLocationRelativeTo(null);
@@ -107,13 +108,13 @@ public class account_manage{
 		final JComboBox<String> comboBox = new JComboBox<String>();
 		myPanel.add(new JLabel("請選擇要刪除或更改權限的的使用者"));
 		for(user u : users){
-			if(u.getidentification() != "Admin") {
+			if(u.getidentification() != "管理員") {
 				comboBox.addItem(u.getname());
 			}
 		}
 		comboBox.setSelectedIndex(0);
         myPanel.add(comboBox);
-        String manage[] = {"刪除使用者", "更改權限", "不動作"};
+        String manage[] = {"刪除使用者", "更改權限", "退出"};
         int result = JOptionPane.showOptionDialog(null, myPanel,"管理使用者介面",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,manage,null);
         if(result == 0) {
         	remove_user(comboBox.getSelectedItem().toString());
@@ -133,12 +134,12 @@ public class account_manage{
     			Panel.setLayout(experiment);
     			Panel.add(new JLabel("請選擇要更改權限"));
     			final JComboBox<String> comboBox = new JComboBox<String>();
-    			comboBox.addItem("Admin");
-    			comboBox.addItem("Student");
-    			comboBox.addItem("Teacher");
-    			comboBox.addItem("Staff");
+    			comboBox.addItem("管理員");
+    			comboBox.addItem("學生");
+    			comboBox.addItem("教師");
+    			comboBox.addItem("職員");
     			Panel.add(comboBox);
-    			String manage_ident[] = {"確定更改", "不動作"};
+    			String manage_ident[] = {"確定更改", "退出"};
     			int select = JOptionPane.showOptionDialog(null, Panel,"管理使用者介面",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, manage_ident,null);
     			if(select == 0) {
     				u.setidentification(comboBox.getSelectedItem().toString());
@@ -150,9 +151,9 @@ public class account_manage{
 		users.removeIf(user -> user.getname() == delete_name);
 	}
 	public void initialize_user(){
-		users.add(new student("王曉明", "user1", "user1", "Student"));
-		users.add(new student("王大明", "user3", "user3", "Student"));
-		users.add(new adminstrator("李小明", "user2", "user2", "Admin"));
+		users.add(new student("王曉明", "user1", "user1", "學生"));
+		users.add(new student("王大明", "user3", "user3", "學生"));
+		users.add(new adminstrator("李小明", "user2", "user2", "管理員"));
 	}
 	
 }
