@@ -35,13 +35,21 @@ public class book_manage{
 	JPanel myPanel = new JPanel();
 	GridLayout experimentLayout = new GridLayout(0,3);
 	myPanel.setLayout(experimentLayout);
+<<<<<<< HEAD
 	myPanel.add(new JLabel("ÃƒÃ¶ÃÃ¤Â¦rÂ·jÂ´M:"));
+=======
+	myPanel.add(new JLabel("ÃöÁä¦r·j´M¡G"));
+>>>>>>> 32cdc9c (java)
 	myPanel.add(xField);
 
-	int result = JOptionPane.showConfirmDialog(null, myPanel,"Search", JOptionPane.OK_CANCEL_OPTION);
+	int result = JOptionPane.showConfirmDialog(null, myPanel,"®ÑÄy·j´M¨t²Î", JOptionPane.OK_CANCEL_OPTION);
 	System.out.println(result);
 	if(result == 2) {
+<<<<<<< HEAD
 		JOptionPane.showMessageDialog(null, "Â¨ÃºÂ®Ã¸Â·jÂ´M");
+=======
+		JOptionPane.showMessageDialog(null, "¨ú®ø·j´M","®ÑÄy¬d¸ß",1);
+>>>>>>> 32cdc9c (java)
 	}
 	else {
 		for(book b : books){
@@ -81,6 +89,7 @@ public class book_manage{
 	      JPanel myPanel = new JPanel();
 	      GridLayout experimentLayout = new GridLayout(0,3);
 	      myPanel.setLayout(experimentLayout);
+<<<<<<< HEAD
 	      myPanel.add(new JLabel("æ›¸åï¼š"));
 	      myPanel.add(xField);
 	      myPanel.add(Box.createHorizontalStrut(15)); // a spacer
@@ -92,6 +101,19 @@ public class book_manage{
 
 	      String add_button[] = {"ç¢ºèªå¢žåŠ ", "å–æ¶ˆ"};
 	      int result = JOptionPane.showOptionDialog(null, myPanel,"å¢žåŠ æ›¸ç±", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, add_button,null);
+=======
+	      myPanel.add(new JLabel("®Ñ¦W¡G"));
+	      myPanel.add(xField);
+	      myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+	      myPanel.add(new JLabel("§@ªÌ¡G"));
+	      myPanel.add(yField);
+	      myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+	      myPanel.add(new JLabel("¥Xª©ªÀ¡G"));
+	      myPanel.add(zField);
+
+	      String add_button[] = {"½T»{¼W¥[", "¨ú®ø"};
+	      int result = JOptionPane.showOptionDialog(null, myPanel,"¼W¥[®ÑÄy", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, add_button,null);
+>>>>>>> 32cdc9c (java)
 	      if (result == JOptionPane.OK_OPTION) {
 	    	  books.add(new book(xField.getText(), yField.getText(), zField.getText()));
 	      }

@@ -41,9 +41,13 @@ public class visitor {
 				myPanel.add(new JLabel(b.getname() + "ã€€ã€€ã€€" + b.getpublish() + "ã€€ã€€ã€€" + b.getauthor() + "ã€€ã€€ã€€"
 						+ (b.getsituation() == "available" ? "å¯å€Ÿé–±" : "å·²è¢«å€Ÿé–±(è‡³" + ubm.retrieve_date(b.getname()) + ")")));
 			}
-			JOptionPane.showMessageDialog(null, myPanel);
+			JOptionPane.showMessageDialog(null, myPanel,"·j´M»P­É¾\¨t²Î",1);
 		} else {
+<<<<<<< HEAD
 			JOptionPane.showMessageDialog(null, "æŸ¥ç„¡æ­¤æ›¸ç±");
+=======
+			JOptionPane.showMessageDialog(null, "¬dµL¦¹®ÑÄy","·j´M»P­É¾\¨t²Î",1);
+>>>>>>> 32cdc9c (java)
 		}
 	}
 
@@ -61,14 +65,25 @@ public class visitor {
 			myPanel.setLayout(experimentLayout);
 			myPanel.add(new JLabel("æ’è¡Œ	æ›¸å\n"));
 			for (int i = 0; i < t.length; i++) {
+<<<<<<< HEAD
 				myPanel.add(new JLabel(i + 1 + "ã€€ã€€ã€€" + t[i]));
 			}
 			String borrow_list[] = { "ä¸å‹•ä½œ", "è¨»å†Š" };
 			int result = JOptionPane.showOptionDialog(null, myPanel, "ä¸å‹•ä½œ", JOptionPane.YES_NO_OPTION,
+=======
+				myPanel.add(new JLabel(i + 1 + "¡@¡@¡@" + t[i]));
+			}
+			String borrow_list[] = { "¤£°Ê§@", "µù¥U" };
+			int result = JOptionPane.showOptionDialog(null, myPanel, "­É¾\±Æ¦æº]", JOptionPane.YES_NO_OPTION,
+>>>>>>> 32cdc9c (java)
 					JOptionPane.QUESTION_MESSAGE, null, borrow_list, null);
 			account_manage ac = new account_manage();
 			if (result == 1) {
 				ac.regis();
+<<<<<<< HEAD
+=======
+				lib.menu();
+>>>>>>> 32cdc9c (java)
 			}
 		}
 

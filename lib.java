@@ -11,7 +11,11 @@ public class lib extends account_manage {
 	}
 
 	public static void menu() {
+<<<<<<< HEAD
 		String login[] = { "è¨»å†Š", "ç™»å…¥", "è¨ªå®¢" };
+=======
+		String login[] = { "µù¥U", "µn¤J", "³X«È" };
+>>>>>>> 32cdc9c (java)
 		int select;
 		account_manage ac = new account_manage();
 		do {
@@ -24,22 +28,22 @@ public class lib extends account_manage {
 			if (select == 1) {
 				user u = ac.login();
 				userbook_manage ubm = new userbook_manage();
-				if (u.getidentification() == "Teacher") {
+				if (u.getidentification() == "±Ð­û") {
 					teacher tea = new teacher(u.getname(), u.getaccount(), u.getpassword(), u.getidentification());
 					ubm.addtea(tea);
 					tea.action();
 
-				} else if (u.getidentification().equals("Student")) {
+				} else if (u.getidentification().equals("¾Ç¥Í")) {
 					student stu = new student(u.getname(), u.getaccount(), u.getpassword(), u.getidentification());
 					ubm.addstu(stu);
 					stu.action();
 
-				} else if (u.getidentification().equals("Staff")) {
+				} else if (u.getidentification().equals("Â¾­û")) {
 					staff sta = new staff(u.getname(), u.getaccount(), u.getpassword(), u.getidentification());
 					ubm.addsta(sta);
 					sta.action();
 
-				} else if (u.getidentification().equals("Admin")) {
+				} else if (u.getidentification().equals("ºÞ²z­û")) {
 					adminstrator temp_bkm = new adminstrator(u.getname(), u.getaccount(), u.getpassword(),
 							u.getidentification());
 					temp_bkm.action(u);
@@ -51,7 +55,11 @@ public class lib extends account_manage {
 				v.action();
 			}
 		} while (select == 0 || select == 1 || select == 2 || select == 3);
+<<<<<<< HEAD
 		JOptionPane.showMessageDialog(null, "è¬è¬å…‰è‡¨");
+=======
+		JOptionPane.showMessageDialog(null, "ÁÂÁÂ¥úÁ{","¤¤¤j¹Ï®Ñ¨t²Î",1);
+>>>>>>> 32cdc9c (java)
 	}
 
 }

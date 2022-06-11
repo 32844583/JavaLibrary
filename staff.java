@@ -4,23 +4,23 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
 
-public class student extends normaluser {
+public class staff extends normaluser{
 	private ArrayList<book> search_books = new ArrayList<book>();
 	private ArrayList<userbook> userbooks = new ArrayList<userbook>();
 	private ArrayList<userbook> history = new ArrayList<userbook>();
 	private int money;
 	private int lendup;
 
-	public student(String n, String acc, String pass, String ident) {
+	public staff(String n, String acc, String pass, String ident) {
 		super(n, acc, pass, ident);
-		this.lendup = 10;
+		this.lendup = 15;
 	}
 
 	public void action() {
 		String login[] = { "ç™»å‡º", "æŸ¥è©¢æ‰€æœ‰å€Ÿé–±è³‡æ–™", "æœå°‹æ›¸ç±", "æŸ¥è©¢æ’è¡Œæ¦œ" };
 		int select;
 		do {
-			select = JOptionPane.showOptionDialog(null, "å­¸ç”Ÿ" + super.getname() + "æ‚¨å¥½ï¼š", "ä¸€èˆ¬ä½¿ç”¨è€…ä»‹é¢",
+			select = JOptionPane.showOptionDialog(null, "è·å“¡" + super.getname() + "æ‚¨å¥½ï¼š", "ä¸€èˆ¬ä½¿ç”¨è€…ä»‹é¢",
 					JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, login, null);
 			switch (select) {
 				case 1:
@@ -36,7 +36,11 @@ public class student extends normaluser {
 		} while (select != 0 && select != -1);
 
 		if (select == -1) {
+<<<<<<< HEAD
 			JOptionPane.showMessageDialog(null, "è«‹é‡æ–°æ“ä½œ");
+=======
+			JOptionPane.showMessageDialog(null, "½Ğ­«·s¾Ş§@","µn¤J¨t²Î",1);
+>>>>>>> 32cdc9c (java)
 		}
 	}
 
@@ -52,10 +56,15 @@ public class student extends normaluser {
 			JPanel myPanel = new JPanel();
 			GridLayout experimentLayout = new GridLayout(0, 1);
 			myPanel.setLayout(experimentLayout);
-			myPanel.add(new JLabel("æ’è¡Œã€€ã€€ã€€æ›¸åã€€ã€€ã€€æ¬¡æ•¸\n"));
+<<<<<<< HEAD
+			myPanel.add(new JLabel("æ’è¡Œã€€ã€€ã€€æ›¸å\n"));
 			for (int i = 0; i < t.length; i++) {
-				int amount = bm.borrow_book_search(t[i]).getcount();
-				myPanel.add(new JLabel(i + 1 + "ã€€ã€€ã€€" + t[i] + "ã€€ã€€ã€€" + amount));
+				myPanel.add(new JLabel(i + 1 + "ã€€ã€€" + t[i]));
+=======
+			myPanel.add(new JLabel("±Æ¦æ¡@¡@¡@®Ñ¦W\n"));
+			for (int i = 0; i < t.length; i++) {
+				myPanel.add(new JLabel(i + 1 + "¡@¡@" + t[i]));
+>>>>>>> 32cdc9c (java)
 			}
 			final JComboBox<String> comboBox = new JComboBox<String>();
 			JLabel label = new JLabel("è«‹é¸æ“‡è¦å€Ÿé–±çš„æ›¸ç±ï¼š");
@@ -73,7 +82,11 @@ public class student extends normaluser {
 			System.out.println(adbook.getname());
 			if (result == 0) {
 				if (userbooks.size() >= this.lendup) {
+<<<<<<< HEAD
 					JOptionPane.showMessageDialog(null, "è¶…éå€Ÿé–±æ•¸é‡");
+=======
+					JOptionPane.showMessageDialog(null, "¶W¹L­É¾\¼Æ¶q","­É¾\¨t²Î",1);
+>>>>>>> 32cdc9c (java)
 				} else {
 					String response = "";
 					if (adbook.getsituation() == "unavailable") {
@@ -84,6 +97,7 @@ public class student extends normaluser {
 							}
 						}
 						if (you_borrow == 1) {
+<<<<<<< HEAD
 							response += "æ‚¨å·²å€Ÿé–±, ä¸å¯é‡è¤‡å€Ÿé–±" + ubm.retrieve_date(adbook.getname());
 							JOptionPane.showMessageDialog(null, response);
 						} else {
@@ -91,6 +105,15 @@ public class student extends normaluser {
 							JOptionPane.showMessageDialog(null, response);
 							String reserve[] = { "é ç´„", "ä¸å‹•ä½œ" };
 							int select = JOptionPane.showOptionDialog(null, "æ‚¨è¦é ç´„å—ï¼Ÿ", null + "student",
+=======
+							response += "±z¤w­É¾\¡A¤£¥i­«½Æ­É¾\" + ubm.retrieve_date(adbook.getname());
+							JOptionPane.showMessageDialog(null, response,"­É¾\¨t²Î",1);
+						} else {
+							response += "\n¦¹®Ñ¤w³Q§O¤H­É¾\¦Ü" + ubm.retrieve_date(adbook.getname());
+							JOptionPane.showMessageDialog(null, response,"­É¾\¨t²Î",1);
+							String reserve[] = { "¹w¬ù", "¤£°Ê§@" };
+							int select = JOptionPane.showOptionDialog(null, "±z­n¹w¬ù¶Ü¡H", null + "student",
+>>>>>>> 32cdc9c (java)
 									JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, reserve, null);
 							if (select == 0) {
 								userbook ub = new userbook(adbook.getname(), adbook.getpublish(), adbook.getauthor(),
@@ -100,7 +123,11 @@ public class student extends normaluser {
 						}
 					} else {
 						userbook ub = new userbook(adbook.getname(), adbook.getpublish(), adbook.getauthor());
+<<<<<<< HEAD
 						JOptionPane.showMessageDialog(null, "å€Ÿé–±è‡³" + ub.getretrievedate());
+=======
+						JOptionPane.showMessageDialog(null, "­É¾\¦Ü" + ub.getretrievedate(),"­É¾\¨t²Î",1);
+>>>>>>> 32cdc9c (java)
 						userbooks.add(ub);
 						adbook.setsituation("unavailable");
 						adbook.setcount();
@@ -108,7 +135,11 @@ public class student extends normaluser {
 				}
 			}
 		} else {
+<<<<<<< HEAD
 			JOptionPane.showMessageDialog(null, "ç›®å‰ç„¡æ›¸ç±ï¼");
+=======
+			JOptionPane.showMessageDialog(null, "¥Ø«eµL®ÑÄy¡I","­É¾\¨t²Î",1);
+>>>>>>> 32cdc9c (java)
 		}
 	}
 
@@ -138,7 +169,7 @@ public class student extends normaluser {
 			}
 			comboBox.setSelectedIndex(0);
 			myPanel.add(comboBox);
-			String retrieve_list[] = { "å–æ¶ˆå€Ÿé–±æˆ–é ç´„", "ä¸å‹•ä½œ" };
+			String retrieve_list[] = { "å–æ¶ˆé ç´„", "ä¸å‹•ä½œ" };
 			int result = JOptionPane.showOptionDialog(null, myPanel, "æ‰€æœ‰å€Ÿé–±è³‡æ–™", JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE, null, retrieve_list, null);
 			if (result == 0) {
@@ -146,7 +177,11 @@ public class student extends normaluser {
 					if (ub.getname() == comboBox.getSelectedItem().toString()) {
 						if (ub.getsituation() == "reserved") {
 							cancel_reserved(ub);
+<<<<<<< HEAD
 							JOptionPane.showMessageDialog(null, "å–æ¶ˆé ç´„ï¼ï¼");
+=======
+							JOptionPane.showMessageDialog(null, "¨ú®ø¹w¬ù¡I¡I","­É¾\¨t²Î",1);
+>>>>>>> 32cdc9c (java)
 						} else {
 							retrieve(ub);
 						}
@@ -161,13 +196,19 @@ public class student extends normaluser {
 			JPanel myPanel = new JPanel();
 			GridLayout experimentLayout = new GridLayout(0, 1);
 			myPanel.setLayout(experimentLayout);
+<<<<<<< HEAD
 			myPanel.add(new JLabel("æ›¸åã€€ã€€ã€€" + "ç‹€æ…‹"));
 			myPanel.add(new JLabel("ç›®å‰å€Ÿé–±æ•¸é‡ï¼šã€€" + userbooks.size()));
 			myPanel.add(new JLabel("ç›®å‰éœ€ç¹³ç´ç½°é‡‘ï¼šã€€" + money));
+=======
+			myPanel.add(new JLabel("®Ñ¦W¤Îª¬ºA"));
+			myPanel.add(new JLabel("¥Ø«e­É¾\¼Æ¶q¡G¡@" + userbooks.size()));
+			myPanel.add(new JLabel("¥Ø«e»İÃº¯Ç»@ª÷¡G¡@" + money));
+>>>>>>> 32cdc9c (java)
 			for (userbook ub : history) {
 				myPanel.add(new JLabel(ub.getname() + "ã€€ã€€" + "å·²æ­¸é‚„(æ–¼" + ub.getretrievedate() + ")"));
 			}
-			JOptionPane.showMessageDialog(null, myPanel);
+			JOptionPane.showMessageDialog(null, myPanel,"­É¾\¨t²Î",1);
 		}
 
 	}
@@ -179,7 +220,11 @@ public class student extends normaluser {
 		history.add(ub);
 		Date now = new Date();
 		JOptionPane.showMessageDialog(null,
+<<<<<<< HEAD
 				"æ­¸é‚„æˆåŠŸï¼ï¼\n" + (money_amount(ub, now) == 0 ? "ç„¡æ–°å¢ç½°é‡‘" : "æ–°å¢ç½°é‡‘" + money_amount(ub, now)));
+=======
+				"ÂkÁÙ¦¨¥\¡I¡I\n" + (money_amount(ub, now) == 0 ? "µL·s¼W»@ª÷" : "·s¼W»@ª÷" + money_amount(ub, now)),"ÁÙ®Ñ¨t²Î",1);
+>>>>>>> 32cdc9c (java)
 		watchinfo();
 	}
 
@@ -219,7 +264,11 @@ public class student extends normaluser {
 			adbook = bm.borrow_book_search(comboBox.getSelectedItem().toString());
 			if (result == 0) {
 				if (userbooks.size() >= this.lendup) {
+<<<<<<< HEAD
 					JOptionPane.showMessageDialog(null, "è¶…éå€Ÿé–±æ•¸é‡");
+=======
+					JOptionPane.showMessageDialog(null, "¶W¹L­É¾\¼Æ¶q","·j´M¨t²Î",1);
+>>>>>>> 32cdc9c (java)
 				} else {
 					String response = "";
 					if (adbook.getsituation() == "unavailable") {
@@ -230,6 +279,7 @@ public class student extends normaluser {
 							}
 						}
 						if (you_borrow == 1) {
+<<<<<<< HEAD
 							response += "æ‚¨å·²å€Ÿé–±, ä¸å¯é‡è¤‡å€Ÿé–±" + ubm.retrieve_date(adbook.getname());
 							JOptionPane.showMessageDialog(null, response);
 						} else {
@@ -237,6 +287,15 @@ public class student extends normaluser {
 							JOptionPane.showMessageDialog(null, response);
 							String reserve[] = { "é ç´„", "ä¸å‹•ä½œ" };
 							int select = JOptionPane.showOptionDialog(null, "æ‚¨è¦é ç´„å—ï¼Ÿ", null + "student",
+=======
+							response += "±z¤w­É¾\, ¤£¥i­«½Æ­É¾\" + ubm.retrieve_date(adbook.getname());
+							JOptionPane.showMessageDialog(null, response,"·j´M»P­É¾\¨t²Î",1);
+						} else {
+							response += "\n¦¹®Ñ¤w³Q§O¤H­É¾\¦Ü" + ubm.retrieve_date(adbook.getname());
+							JOptionPane.showMessageDialog(null, response,"·j´M»P­É¾\¨t²Î",1);
+							String reserve[] = { "¹w¬ù", "¤£°Ê§@" };
+							int select = JOptionPane.showOptionDialog(null, "±z­n¹w¬ù¶Ü¡H", null + "student",
+>>>>>>> 32cdc9c (java)
 									JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, reserve, null);
 							if (select == 0) {
 								userbook ub = new userbook(adbook.getname(), adbook.getpublish(), adbook.getauthor(),
@@ -246,7 +305,11 @@ public class student extends normaluser {
 						}
 					} else {
 						userbook ub = new userbook(adbook.getname(), adbook.getpublish(), adbook.getauthor());
+<<<<<<< HEAD
 						JOptionPane.showMessageDialog(null, "å€Ÿé–±è‡³" + ub.getretrievedate());
+=======
+						JOptionPane.showMessageDialog(null, "­É¾\¦Ü" + ub.getretrievedate(),"·j´M»P­É¾\¨t²Î",1);
+>>>>>>> 32cdc9c (java)
 						userbooks.add(ub);
 						adbook.setsituation("unavailable");
 						adbook.setcount();
@@ -254,7 +317,11 @@ public class student extends normaluser {
 				}
 			}
 		} else {
+<<<<<<< HEAD
 			JOptionPane.showMessageDialog(null, "æŸ¥ç„¡æ­¤æ›¸ç±");
+=======
+			JOptionPane.showMessageDialog(null, "¬dµL¦¹®ÑÄy","·j´M»P­É¾\¨t²Î",1);
+>>>>>>> 32cdc9c (java)
 		}
 	}
 
