@@ -10,7 +10,7 @@ public class book{
 		this.author = a;
 		setsituation("available");
 		if(n.equals("book1")) {
-			this.count = 1;
+			this.count = 5;
 		}
 		if(n.equals("book2")) {
 			this.count = 10;
