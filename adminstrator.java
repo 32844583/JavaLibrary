@@ -27,16 +27,12 @@ public class adminstrator extends user{
 					addbook(u);
 					break;
 				case 4:
-					watchbook();
+					watch_book();
    			}
 		}while(select != -1 && select != 0);
 		if(select == -1) {
 			JOptionPane.showMessageDialog(null, "請重新操作");
 		}
-	}
-	
-	public void watchbook() {
-		watch_book();
 	}
 	public void edit(user u){
 		book adbook = new book("","","");
