@@ -6,8 +6,8 @@ public class visitor {
 	static ArrayList<book> search_books = new ArrayList<book>();
 
 	public void action() {
-		String login[] = { "æœå°‹æ›¸ç±", "æ’è¡Œæ¦œ", "å›åˆ°é¦–é " };
-		int select = JOptionPane.showOptionDialog(null, "è¨ªå®¢æ‚¨å¥½ï¼š", null, JOptionPane.YES_OPTION,
+		String login[] = { "·j´M®ÑÄy", "±Æ¦æº]", "¦^¨ì­º­¶" };
+		int select = JOptionPane.showOptionDialog(null, "³X«È±z¦n¡G", null, JOptionPane.YES_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, login, null);
 		if (select != 2) {
 			switch (select) {
@@ -36,14 +36,14 @@ public class visitor {
 		GridLayout experimentLayout = new GridLayout(0, 1);
 		myPanel.setLayout(experimentLayout);
 		if (search_books.size() != 0) {
-			myPanel.add(new JLabel("æ›¸åã€€ã€€ã€€å‡ºç‰ˆç¤¾ã€€ã€€ã€€ä½œè€…ã€€ã€€ã€€ã€€ç‹€æ…‹\n"));
+			myPanel.add(new JLabel("®Ñ¦W¡@¡@¡@¥Xª©ªÀ¡@¡@¡@§@ªÌ¡@¡@¡@¡@ª¬ºA\n"));
 			for (book b : search_books) {
-				myPanel.add(new JLabel(b.getname() + "ã€€ã€€ã€€" + b.getpublish() + "ã€€ã€€ã€€" + b.getauthor() + "ã€€ã€€ã€€"
-						+ (b.getsituation() == "available" ? "å¯å€Ÿé–±" : "å·²è¢«å€Ÿé–±(è‡³" + ubm.retrieve_date(b.getname()) + ")")));
+				myPanel.add(new JLabel(b.getname() + "¡@¡@¡@" + b.getpublish() + "¡@¡@¡@" + b.getauthor() + "¡@¡@¡@"
+						+ (b.getsituation() == "available" ? "¥i­É¾\" : "¤w³Q­É¾\(¦Ü" + ubm.retrieve_date(b.getname()) + ")")));
 			}
-			JOptionPane.showMessageDialog(null, myPanel);
+			JOptionPane.showMessageDialog(null, myPanel,"·j´M»P­É¾\¨t²Î",1);
 		} else {
-			JOptionPane.showMessageDialog(null, "æŸ¥ç„¡æ­¤æ›¸ç±");
+			JOptionPane.showMessageDialog(null, "¬dµL¦¹®ÑÄy","·j´M»P­É¾\¨t²Î",1);
 		}
 	}
 
@@ -59,16 +59,17 @@ public class visitor {
 			JPanel myPanel = new JPanel();
 			GridLayout experimentLayout = new GridLayout(0, 1);
 			myPanel.setLayout(experimentLayout);
-			myPanel.add(new JLabel("æ’è¡Œ	æ›¸å\n"));
+			myPanel.add(new JLabel("±Æ¦æ	®Ñ¦W\n"));
 			for (int i = 0; i < t.length; i++) {
-				myPanel.add(new JLabel(i + 1 + "ã€€ã€€ã€€" + t[i]));
+				myPanel.add(new JLabel(i + 1 + "¡@¡@¡@" + t[i]));
 			}
-			String borrow_list[] = { "ä¸å‹•ä½œ", "è¨»å†Š" };
-			int result = JOptionPane.showOptionDialog(null, myPanel, "ä¸å‹•ä½œ", JOptionPane.YES_NO_OPTION,
+			String borrow_list[] = { "¤£°Ê§@", "µù¥U" };
+			int result = JOptionPane.showOptionDialog(null, myPanel, "­É¾\±Æ¦æº]", JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE, null, borrow_list, null);
 			account_manage ac = new account_manage();
 			if (result == 1) {
 				ac.regis();
+				lib.menu();
 			}
 		}
 
@@ -80,16 +81,16 @@ public class visitor {
  * JPanel myPanel = new JPanel();
  * s.search_gui();
  * for (book b:search_books){
- * myPanel.add(new JLabel("æ›¸å:" + b.getname()));
+ * myPanel.add(new JLabel("®Ñ¦W:" + b.getname()));
  * myPanel.add(Box.createHorizontalStrut(15));
  * }
  * GridLayout experimentLayout = new GridLayout(0,2);
  * myPanel.setLayout(experimentLayout);
  * 
  * int result =
- * JOptionPane.showConfirmDialog(null,myPanel,"æ›¸ç±åç¨±",JOptionPane.YES_NO_OPTION,
+ * JOptionPane.showConfirmDialog(null,myPanel,"®ÑÄy¦WºÙ",JOptionPane.YES_NO_OPTION,
  * JOptionPane.QUESTION_MESSAGE);
  * if(result == JOptionPane.OK_OPTION){
- * if(search_books.size() == 0){JOptionPane.showMessageDialog(null, "æŸ¥ç„¡æ­¤æ›¸ç±");}
+ * if(search_books.size() == 0){JOptionPane.showMessageDialog(null, "¬dµL¦¹®ÑÄy");}
  * }
  */
